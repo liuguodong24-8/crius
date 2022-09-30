@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message OperateType {
+    string id = 1;
+    string name = 2;
+    string parent_id = 3;
+}
+
+message GetOperateTypesResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated OperateType data = 3;
+}

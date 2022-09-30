@@ -1,0 +1,5 @@
+config/config.toml
+go.sum
+.vscode/
+.idea/
+dbconfig.yml

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message CreateBranchBusinessSpecialRequest{
+    BranchBusiness business = 1;
+}
+
+message UpdateBranchBusinessSpecialRequest{
+    BranchBusiness business = 1;
+}
+
+message UpdateBranchBusinessNormalRequest{
+    string branch_id = 1;
+    repeated BranchBusiness businesses = 2;
+}
+
+message UpdateBranchBusinessStatusRequest{
+    string id = 1;
+    string status = 2;
+}
+
+message GetBranchBusinessesRequest{
+    string branch_id = 1;
+    string status = 2;
+    string category = 3;
+    int32 offset = 4;
+    int32 limit = 5;
+}
+
+message GetBranchBusinessesResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetBranchBusinessesData data = 3;
+}
+
+message GetBranchBusinessesData{
+    int32 total = 1;
+    repeated BranchBusiness businesses = 2;
+}
+
+message BranchBusiness {
+    string id = 1;
+    string branch_id = 2;
+    string begin_date = 3;
+    string end_date = 4;
+    repeated int32 weeks = 5;
+    string begin_time = 6;
+    string end_time = 7;
+    bool is_next_day = 8;
+    string status = 9;
+    string category = 10;
+}
+
+message GetBranchLatelyBusinessRequest {
+    string branch_id = 1;
+    int64 date_time = 2;
+}
+message GetBranchLatelyBusinessResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    message Business {
+        string business_date = 1;
+        string begin_time = 2;
+        string end_time = 3;
+        bool is_next_day = 4;
+    }
+    Business data = 3;
+}

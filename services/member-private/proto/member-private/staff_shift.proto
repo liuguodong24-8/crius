@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package memberPrivate;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MemberPrivateServer";
+
+// CreateStaffShiftRequest 新增员工交班
+message CreateStaffShiftRequest {
+  string branch_id = 1;
+  int64 shift_time = 2;
+}
+
+// CreateStaffShiftResponse 新增员工交班
+message CreateStaffShiftResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Shift {
+    int64 begin_time = 1;
+    int64 end_time = 2;
+  }
+  Shift data = 3;
+}
+
+// GetStaffShiftTimeRequest 获取员工当前班次时间
+message GetStaffShiftTimeRequest {
+  string branch_id = 1;
+}
+
+// GetStaffShiftTimeResponse 获取员工当前班次时间
+message GetStaffShiftTimeResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Shift {
+    int64 begin_time = 1;
+    int64 end_time = 2;
+  }
+  Shift data = 3;
+}
+
+// ListStaffShiftRequest 班次列表
+message ListStaffShiftRequest {
+  string branch_id = 1;
+  int64 begin_at = 2;
+  int64 end_at = 3;
+  string order_by = 4;
+}
+
+// ListStaffShiftResponse 班次列表
+message ListStaffShiftResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message StaffShift {
+    string id = 1;
+    int64 begin_time = 2;
+    int64 end_time = 3;
+    int64 created_at = 4;
+  }
+  repeated StaffShift data = 3;
+}

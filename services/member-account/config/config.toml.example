@@ -1,0 +1,42 @@
+## 服务信息
+[app]
+name = "member-account"
+desc = "会员账户服务"
+ip = "127.0.0.1"
+port = 36512
+weight = 1
+
+### 服务中心信息
+[crius]
+address = "127.0.0.1:6666"  ## 服务中心地址
+memberPrivate = "member-private" ## 会员私有服务
+merchantBasic = "merchant-basic"  ## 商户基础服务
+basic = "basic" ## 基础服务
+
+## 日志
+[log]
+channel = "service-member-account"   # 分类
+level = 1                    # 级别 1:debug 2:info 3:warn  4:error 5:panic
+output = ""                  # 日志输出 不配置(默认stdout) 配置文件路劲
+stack = false                # 是否打印堆栈信息
+
+## 数据库
+[database]
+host = "192.168.1.98"       #地址
+port = 5432                 #端口
+user = "micro"              #数据库账户
+password = "123456"         #数据库密码
+dbname = "micro_member_account"    #数据库名称
+sslmode = "disable"         #ssl
+log =  true                 #开启sql日志
+
+## Redis
+[redis]
+ip = "127.0.0.1"
+port = 6379
+password = ""
+database = 0
+
+[migrate]
+table = "tablename"
+schema = "schemaname"

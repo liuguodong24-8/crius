@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package message;
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MessageServer";
+
+message WechatStatRequest {
+  string branch_id = 1;
+  string message_type = 2;
+  int64 begin_date = 3;
+  int64 end_date = 4;
+  bool with_page = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+message WechatStat {
+  string branch_id = 1;
+  int64 total = 2;
+  int64 success_total = 3;
+  int64 fail_total = 4;
+}
+
+message WechatStatResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatStatData data = 3;
+}
+
+message WechatStatData {
+  repeated WechatStat stats = 1;
+  int64 total = 2;
+}

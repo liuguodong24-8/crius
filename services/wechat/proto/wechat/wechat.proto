@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package wechat;
+
+import "proto/wechat/official.proto";
+import "proto/wechat/message.proto";
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\WechatServer";
+
+service WechatService {
+  // 公众号 获取网页授权URL
+  rpc OfficialGetAuthURL (OfficialAuthURLRequest) returns (OfficialAuthURLResponse) {}
+  // 公众号 code 换取 user 信息
+  rpc OfficialCodeGetUser (OfficialCodeGetUserRequest) returns (OfficialCodeGetUserResponse) {}
+ // 公众号 openid获取详细 user信息
+  rpc OfficialOpenidGetUser (OfficialOpenidGetUserRequest) returns (OfficialOpenidGetUserResponse) {}
+  // 公众号 JSSDK
+  rpc OfficialJsSdk (OfficialJsSdkRequest) returns (OfficialJsSdkResponse) {}
+
+  // SendTemplateMessage 发送模版消息
+  rpc SendTemplateMessage (SendTemplateMessageRequest) returns (SendTemplateMessageResponse) {}
+}

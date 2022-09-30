@@ -1,0 +1,28 @@
+{
+  "name":"omy/micro",
+  "description":"omy crius server",
+  "require":{
+    "php":">=7.4",
+    "ext-grpc":"*",
+
+    "google/protobuf":"^3.15",
+    "grpc/grpc":"^1.35",
+    "hyperf/grpc-client":"~2.1.0",
+    "hyperf/grpc-server":"~2.1.0",
+    "laravel/helpers": "^1.4.1",
+    "ext-json": "*",
+    "simps/mqtt": "^1.4"
+  },
+  "config":{
+    "optimize-autoloader":true,
+    "preferred-install":"dist",
+    "sort-packages":true
+  },
+  "autoload":{
+    "psr-4":{
+      "GPBMetadata\\":"GPBMetadata",
+      "Omy\\":"Omy",
+      "Omy\\MicroServers\\":"src"
+    }
+  }
+}

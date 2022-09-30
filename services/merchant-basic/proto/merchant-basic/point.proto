@@ -1,0 +1,229 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+// CreateConsumeCategoryRequest 创建积分类型
+message CreateConsumeCategoryRequest {
+  string category = 1;
+  string code = 2;
+  string status = 3;
+  repeated string operator_types = 4;
+  repeated string active_types = 5;
+  bool is_room_fee = 6;
+}
+
+// ListConsumeCategoryRequest 积分类型列表
+message ListConsumeCategoryRequest {
+  string category = 1;
+  string status = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+  string order_by = 5;
+  bool with_page = 6;
+}
+
+// ConsumeCategory 积分类型
+message ConsumeCategory {
+  string id = 1;
+  string category = 2;
+  string code = 3;
+  string status = 4;
+  int64 created_at = 5;
+  repeated string operator_types = 6;
+  repeated string active_types = 7;
+  bool is_room_fee = 8;
+}
+
+message GetConsumeCategoryTypesResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data{
+    repeated string operator_types = 1;
+    repeated string active_types = 7;
+    bool is_room_fee = 2;
+  }
+  Data data = 3;
+}
+
+// ListConsumeCategoryResponse 积分类型列表
+message ListConsumeCategoryResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    repeated ConsumeCategory data = 1;
+    int64 total = 2;
+  }
+  Data data = 3;
+}
+
+// UpdateConsumeCategoryRequest 修改积分类型
+message UpdateConsumeCategoryRequest {
+  string id = 1;
+  string category = 2;
+  string code = 3;
+  string status = 4;
+  repeated string operator_types = 5;
+  repeated string active_types = 6;
+  bool is_room_fee = 7;
+}
+
+// ShowConsumeCategoryRequest 查看积分类型
+message ShowConsumeCategoryRequest {
+  string id = 1;
+}
+
+// ShowConsumeCategoryResponse 查看积分类型
+message ShowConsumeCategoryResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  ConsumeCategory data = 3;
+}
+
+// SetPointRuleDescribeRequest 设置积分规则说明
+message SetPointRuleDescribeRequest {
+  repeated string images = 1;
+}
+
+// GetPointRuleDescribeResponse 获取积分规则说明
+message GetPointRuleDescribeResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    repeated string images = 1;
+  }
+  Data data = 3;
+}
+
+// PointRule 积分规则
+message PointRule {
+  string id = 1;
+  string rule_name = 2;
+  repeated PointRuleDetail gain_rules = 3;
+  repeated PointRuleDetail use_rules = 4;
+  int32 validity_day = 5;
+  repeated string branch_ids = 6;
+  string status = 7;
+  int64 created_at = 8;
+}
+
+// PointRuleDetail 积分规则详情
+message PointRuleDetail {
+  string category_id = 1;
+  int64  point = 2;
+  int64 fee = 3;
+}
+
+// CreatePointRule 保存积分设置
+message CreatePointRuleRequest {
+  string rule_name = 1;
+  repeated PointRuleDetail gain_rules = 2;
+  repeated PointRuleDetail use_rules = 3;
+  int32 validity_day = 4;
+  repeated string branch_ids = 5;
+  string status = 6;
+}
+
+
+// UpdatePointRuleRequest 修改积分规则
+message UpdatePointRuleRequest {
+  string id = 1;
+  string rule_name = 2;
+  repeated PointRuleDetail gain_rules = 3;
+  repeated PointRuleDetail use_rules = 4;
+  int32 validity_day = 5;
+  repeated string branch_ids = 6;
+  string status = 7;
+}
+
+// ListPointRuleRequest 查看积分规则列表
+message ListPointRuleRequest {
+  string rule_name = 1;
+  string status = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+  string order_by = 5;
+  bool with_page = 6;
+}
+
+// ListPointRuleRequest 查看积分规则列表
+message ListPointRuleResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    repeated PointRule data = 1;
+    int64 total = 2;
+  }
+  Data data = 3;
+}
+
+// ShowPointRuleRequest 查看积分规则详情
+message ShowPointRuleRequest {
+  string id = 1;
+  string branch_id = 2;
+}
+
+// ShowPointRuleResponse 查看积分规则详情
+message ShowPointRuleResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  PointRule data = 3;
+}
+
+// GetPointRuleAllBranchResponse 获取所有已设置积分规则的门店
+message GetPointRuleAllBranchResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    repeated string branch_ids = 1;
+  }
+  Data data = 3;
+}
+
+// GetBranchPointRuleRequest 获取门店积分规则
+message GetBranchPointRuleRequest {
+  string branch_id = 1;
+  string category_code = 2;
+}
+
+// GetBranchPointRuleResponse 获取门店积分规则
+message GetBranchPointRuleResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Rule {
+    int64 point = 1;
+    int64 fee = 2;
+    int32 validity_day = 3;
+  }
+  message Data {
+    Rule gain_rule = 1;
+    Rule use_rule = 2;
+  }
+  Data data = 3;
+}
+
+message GetBranchPointRulesRequest {
+  string branch_id = 1;
+}
+
+message PointRuleWithConsumeType {
+  int64 point = 1;
+  int64 fee = 2;
+  repeated string operate_type = 3;
+  repeated string active_type = 4;
+  string consume_type = 5;
+  string consume_type_id = 6;
+  bool is_room_fee = 7;
+}
+
+message GetBranchPointRulesResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    repeated PointRuleWithConsumeType gain_rule = 1;
+    repeated PointRuleWithConsumeType use_rule = 2;
+  }
+  Data data = 3;
+}

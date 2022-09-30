@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message AppointmentTemplate{
+    string id = 1;
+    string branch_id = 2;
+    string name = 3;
+    string color = 4;
+    string status = 5;
+    repeated string room_type_ids = 6;
+    int32 created_at = 7;
+    int32 updated_at = 8;
+    string begin_time = 9;
+    string end_time = 10;
+    bool is_next_day = 11;
+  }
+  
+  message SaveAppointmentTemplateRequest{
+    AppointmentTemplate template = 1;
+    repeated AppointmentTemplateConfig config = 2;
+  }
+
+  message SaveAppointmentTemplateResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    string data = 3;
+  }
+  
+  message AppointmentTemplateConfig{
+    string id = 1;
+    string room_type_id = 2;
+    string template_id = 3;
+    int32 advance_day = 4;
+    int32 deposit_fee = 5;
+    repeated TemplateRoomConfigColumn configure = 6;
+  }
+
+  message TemplateRoomConfigColumn{
+    int32 way = 1;
+    string time = 2;
+    int32 num = 3;
+    bool is_next_day = 4;
+  }
+  
+  message ShowAppointmentTemplateRequest{
+    string id = 1;
+  }
+  
+  message ShowAppointmentTemplateResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    AppointmentTemplate data = 3;
+  }
+  
+  message GetAppointmentTemplateConfigsRequest{
+    string template_id = 1;
+  }
+  
+  message GetAppointmentTemplateConfigsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated AppointmentTemplateConfig data = 3;
+  }
+  
+  message GetAppointmentTemplatesRequest{
+    string branch_id = 1;
+    string name = 2;
+    int32 offset = 3;
+    int32 limit = 4;
+    string status = 5;
+  }
+
+  message GetAppointmentTemplatesResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetAppointmentTemplatesData data = 3;
+  }
+
+  message GetAppointmentTemplatesData{
+      repeated AppointmentTemplate templates = 1;
+      int32 total = 2;
+  }
+
+  message UpdateAppointmentTemplateStatusRequest{
+    string id = 1;
+    string status = 2;
+  }

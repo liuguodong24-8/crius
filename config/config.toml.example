@@ -1,0 +1,21 @@
+## web服务相关配置
+[web]
+address = ":6667"
+
+## rpc服务相关配置
+[grpc]
+address = ":6666"
+arrive = 600000
+
+## 日志
+[log]
+channel = "crius"   # 分类
+level = 1           # 级别 1:debug  2:warn 3:info 4:error 5:panic
+output = ""         # 日志输出 不配置(默认stdout) 配置文件路劲
+stack = false        # 是否打印堆栈信息
+
+[redis]
+ip = "127.0.0.1"
+port = 6379
+database = 0
+password = ""

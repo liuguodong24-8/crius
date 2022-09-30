@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message GetCallerRecordsRequest{
+    int32 date_start = 1;
+    int32 date_end = 2;
+    int32 offset = 3;
+    int32 limit = 4;
+    string phone = 5;
+}
+
+message GetCallerRecordsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetCallerRecordsData data = 3;
+}
+
+message GetCallerRecordsData{
+    repeated CallerRecord records = 1;
+    int32 total = 2;
+}
+
+message CallerRecord{
+    string id = 1;
+    string merchant_id = 2;
+    string caller_id = 3;
+    string phone = 4;
+    string operator = 5;
+    repeated string call_action = 6;
+    int32 call_at = 7;
+}
+
+message CreateCallerRecordRequest{
+    string phone = 1;
+    string name = 2;
+    int32 gender = 3;
+}
+
+message CreateCallerRecordResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    CreateCallerRecordData data = 3;
+}
+
+message CreateCallerRecordData{
+    string caller_id = 1;
+    string caller_record_id = 2;
+    int32 count = 3;
+}
+
+message UpdateCallerRecordActionRequest{
+    string id = 1;
+    string action = 2;
+}

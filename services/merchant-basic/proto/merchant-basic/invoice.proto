@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+
+message CreateInvoiceRequest {
+  string action = 1;
+  string invoice_data = 2;
+}
+
+message CreateInvoiceResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}

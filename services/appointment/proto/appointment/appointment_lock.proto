@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message SaveAppointmentLockRequest{
+    string id = 1;
+    string branch_id = 2;
+    string room_group_id = 3;
+    int32 way = 4;
+    int32 appointment_at = 5;
+    int32 appointment_date = 6;
+}
+  
+message SaveAppointmentLockResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    string data = 3;
+}
+  
+message DeleteAppointmentLockRequest{
+    string id = 1;
+}

@@ -1,0 +1,6 @@
+go.sum
+.vscode/
+.idea/
+*.swp
+config/config.toml
+script/

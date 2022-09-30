@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message SearchGoodsAndPackageRequest {
+    string name_or_code = 1;
+}
+
+message GoodsAndPackageItem {
+    string id = 1;
+    string pos_code = 2;
+    string code = 3;
+    string name = 4;
+    int32 price = 5;
+    string unit_name = 6;
+}
+
+message SearchGoodsAndPackageResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    message Result {
+        repeated GoodsAndPackageItem goods = 1;
+        repeated GoodsAndPackageItem packages = 2;
+    }
+    Result data = 3;
+}
+
+message ShowGoodsRequest {
+    string id = 1;
+    string branch_id = 2;
+}
+
+message ShowGoodsResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    GoodsAndPackageItem data = 3;
+}
+
+message ShowPackageRequest {
+    string id = 1;
+    string branch_id = 2;
+}
+
+message ShowPackageResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    GoodsAndPackageItem data = 3;
+}
+
+message MultiGetGoodsAndPackagesRequest {
+    repeated string goods_ids = 1;
+    repeated string package_ids = 2;
+    string branch_id = 3;
+}
+
+message MultiGetGoodsAndPackagesResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    message Result {
+        repeated GoodsAndPackageItem goods = 1;
+        repeated GoodsAndPackageItem packages = 2;
+    }
+    Result data = 3;
+}
+
+message SearchGoodsOrPackageRequest {
+    string name_or_code = 1;
+    string category = 2;
+}
+
+message SearchGoodsOrPackageResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated GoodsAndPackageItem data = 3;
+}

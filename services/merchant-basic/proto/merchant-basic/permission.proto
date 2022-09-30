@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+
+message PermissionInfo{
+    int32 id = 1;
+    string permission = 2;
+    string service = 3;
+}
+
+message GetPermissionsRequest{
+    string id = 1;
+    string service = 2;
+}
+
+message GetPermissionsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated PermissionInfo data = 3;
+}
+
+message CreatePermissionsRequest{
+    repeated PermissionInfo permissions = 1;
+    string service = 2;
+}
+
+message CreatePermissionsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}

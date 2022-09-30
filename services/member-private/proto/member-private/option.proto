@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package memberPrivate;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MemberPrivateServer";
+
+message OptionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message ListPromotionOptionRequest {
+  string promotion_id = 1;
+  string name = 2;
+  string status = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+  string order_by = 6;
+  bool with_page = 7;
+  repeated string ids = 8;
+  repeated string promotion_ids = 9;
+  string tag_id = 10;
+  repeated string tag_ids = 11;
+  message FilterPromotion {
+    int64 begin = 1;
+    int64 end = 2;
+    string status = 3;
+    string branch_id = 4;
+  }
+  FilterPromotion filter_promotion = 12;
+  string branch_id = 13;
+}
+
+message PromotionOption {
+  string id = 1;
+  string promotion_id = 2;
+  string name = 3;
+  string status = 4;
+  int64 recharge_value = 5;
+  int64 base_value = 6;
+  int64 gift_value = 7;
+  string describe = 8;
+  string tag_id = 9;
+  int64 created_at = 10;
+  repeated ProductPackage products = 11;
+  repeated ProductPackage packages = 12;
+  repeated ProductPackage tickets = 13;
+}
+
+message ProductPackage{
+  string id = 1; // 商品/套餐id
+  string code = 2; // 商品/套餐code
+  int32 number = 3; // 消费/获得数量
+  int32 price = 4; // 商品/套餐价格
+  string title = 5; // 商品/套餐名字
+  string unit = 6; // 商品/套餐单位
+}
+
+message ListPromotionOptionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message ListPromotionOptionData{
+    repeated PromotionOption data = 1;
+    int32 total = 2;
+  }
+  ListPromotionOptionData data = 3;
+}
+
+message CreatePromotionOptionRequest {
+  string promotion_id = 1;
+  string name = 2;
+  string status = 3;
+  int64 recharge_value = 4;
+  int64 base_value = 5;
+  int64 gift_value = 6;
+  string describe = 7;
+  string tag_id = 8;
+  repeated ProductPackage products = 9;
+  repeated ProductPackage packages = 10;
+  repeated ProductPackage tickets = 11;
+}
+
+message ShowPromotionOptionRequest {
+  string option_id = 1;
+}
+
+message ShowPromotionOptionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  PromotionOption data = 3;
+}
+
+message UpdatePromotionOptionRequest {
+  string id = 1;
+  string promotion_id = 2;
+  string name = 3;
+  string status = 4;
+  int64 recharge_value = 5;
+  int64 base_value = 6;
+  int64 gift_value = 7;
+  string describe = 8;
+  string tag_id = 9;
+  repeated ProductPackage products = 10;
+  repeated ProductPackage packages = 11;
+  repeated ProductPackage tickets = 12;
+}

@@ -1,0 +1,18 @@
+## 服务信息
+[app]
+name = "basic"
+desc = "基础公用服务"
+ip = "127.0.0.1"
+port = 12345
+weight = 1
+
+### 服务中心信息
+[crius]
+address = "127.0.0.1:6666"  ## 服务中心地址
+
+## 日志
+[log]
+channel = "service-basic"   # 分类
+level = 1                   # 级别 1:debug 2:info 3:warn  4:error 5:panic
+output = ""                 # 日志输出 不配置(默认stdout) 配置文件路劲
+stack = false                # 是否打印堆栈信息

@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+import "proto/merchant-basic/branch_tag.proto";
+import "proto/merchant-basic/branch_business.proto";
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+
+message BranchInfo {
+    string name = 1;
+    string province_id = 2;
+    string city_id = 3;
+    string district_id = 4;
+    string address = 5;
+    string phone = 6;
+    int32 created_at = 7;
+    string extra = 8;
+    string code = 9;
+    string id = 10;
+    float latitude = 11;
+    float longitude = 12;
+    string status = 13;
+    int32 opened_at = 14;
+    repeated string photo = 15;
+    string parking = 16;
+    string area_id = 17;
+    int32 weight = 18;
+    string domain = 19;
+    int32 biz_type = 20;
+    string business_status = 21;
+    string alias = 22;
+    string simplify = 23;
+    string location = 24;
+    string brand_id = 25;
+    string brand_name = 26;
+    repeated BranchBusiness business_hours = 27;
+  }
+  
+  message CreateBranchRequest {
+      BranchInfo branch = 1;
+      repeated BranchBusiness business_hours = 2;
+  }
+  
+  message CreateBranchResponse {
+      int32 error_code = 1;
+      string error_message = 2;
+      string data = 3;
+  }
+  
+  message UpdateBranchRequest {
+      BranchInfo branch = 1;
+      repeated BranchBusiness business_hours = 2;
+  }
+  
+  message UpdateBranchResponse {
+      int32 error_code = 1;
+      string error_message = 2;
+  }
+  
+  message GetBranchesRequest {
+      string name = 1;
+      string province_id = 2;
+      string city_id = 3;
+      string district_id = 4;
+      int32 offset = 5;
+      int32 limit = 6;
+      string status = 7;
+      string staff_id = 8;
+      string area_id = 9;
+      repeated string business_status = 10;
+      string brand_id = 11;
+  }
+  
+  message GetBranchesResponse {
+      int32 error_code = 1;
+      string error_message = 2;
+      BranchesData data = 3;
+  }
+
+  message GetBranchesByTagIDsRequest{
+    repeated string tag_ids = 1;
+    string status = 2;
+    repeated string business_status = 3;
+  }
+
+  message GetBranchesByTagIDsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated GetBranchesByTagIDsData data = 3;
+  }
+
+  message GetBranchesByTagIDsData{
+    BranchTagData branch_tag = 1;
+    repeated BranchInfo branches = 2;
+  }
+
+  message UpdateBranchStatusRequest{
+      string id = 1;
+      string status = 2;
+  }
+  
+  message UpdateBranchStatusResponse{
+      int32 error_code = 1;
+      string error_message = 2;
+  }
+  
+  message BranchesData {
+      repeated BranchInfo branches = 1;
+      int32 total = 2;
+  }
+  
+  
+  message DeleteBranchRequest{
+      string id = 1;
+  }
+  
+  message DeleteBranchResponse{
+      int32 error_code = 1;
+      string error_message = 2;
+  }
+  
+  message ShowBranchRequest{
+      string id = 1;
+  }
+  
+  message ShowBranchResponse{
+      int32 error_code = 1;
+      string error_message = 2;
+      BranchInfo data = 3;
+  }
+
+  message UpdateBranchAccountRequest {
+      string id = 1;
+      string wechat_app_id = 2;
+      string wechat_mch_id = 3;
+      string wechat_key = 4;
+      string wechat_cert_path = 5;
+      string wechat_key_path = 6;
+  }
+
+  message UpdateBranchAccountResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+  }
+
+  message GetBranchConsumeRewardRuleRequest {
+      string branch_id = 1;
+      repeated string consume_type_codes = 2;
+  }
+
+  message ConsumeRewardRule {
+      message GrowthRule {
+          string consume_type_code = 1;
+          int32 cost = 2;
+      }
+      message PointRule {
+          string consume_type_code = 1;
+          int32 fee = 2;
+          int32 point = 3;
+      }
+
+      message GrowthRules {
+          repeated GrowthRule rules = 1;
+          int32 validity_day = 2;
+      }
+      message PointRules {
+          repeated  PointRule rules = 1;
+          int32 validity_day = 2;
+      }
+      GrowthRules growth_rules = 1;
+      PointRules point_rules = 2;
+  }
+
+  message GetBranchConsumeRewardRuleResponse {
+      int32 error_code = 1;
+      string error_message = 2;
+      ConsumeRewardRule data = 3;
+  }

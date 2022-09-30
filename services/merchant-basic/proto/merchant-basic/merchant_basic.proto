@@ -1,0 +1,241 @@
+syntax = "proto3";
+
+package merchantBasic;
+import "proto/merchant-basic/branch.proto";
+import "proto/merchant-basic/operate_type.proto";
+import "proto/merchant-basic/active_type.proto";
+import "proto/merchant-basic/staff.proto";
+import "proto/merchant-basic/role.proto";
+import "proto/merchant-basic/permission.proto";
+import "proto/merchant-basic/member.proto";
+import "proto/merchant-basic/branch_tag.proto";
+import "proto/merchant-basic/invoice.proto";
+import "proto/merchant-basic/branch_appointment.proto";
+import "proto/merchant-basic/room_type_category.proto";
+import "proto/merchant-basic/room_type.proto";
+import "proto/merchant-basic/district.proto";
+import "proto/merchant-basic/payment.proto";
+import "proto/merchant-basic/member_behavior.proto";
+import "proto/merchant-basic/brand.proto";
+import "proto/merchant-basic/branch_business.proto";
+import "proto/merchant-basic/wechat_member.proto";
+import "proto/merchant-basic/point.proto";
+import "proto/merchant-basic/member_address.proto";
+import "proto/merchant-basic/growth_config.proto";
+import "proto/merchant-basic/growth_rule.proto";
+import "proto/merchant-basic/goods_and_package.proto";
+import "proto/merchant-basic/room_type_group.proto";
+import "proto/merchant-basic/merchant.proto";
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+service MerchantBasicService{
+    rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse){}
+    rpc UpdateBranch(UpdateBranchRequest) returns (UpdateBranchResponse){}
+    rpc GetBranches(GetBranchesRequest) returns (GetBranchesResponse){}
+    rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse){}
+    rpc ShowBranch(ShowBranchRequest) returns (ShowBranchResponse){}
+    rpc UpdateBranchStatus(UpdateBranchStatusRequest) returns (UpdateBranchStatusResponse){}
+    rpc UpdateBranchAccount(UpdateBranchAccountRequest) returns (UpdateBranchAccountResponse){}
+    rpc GetBranchesByTagIDs(GetBranchesByTagIDsRequest) returns (GetBranchesByTagIDsResponse){}
+
+    rpc CreateStaff(CreateStaffRequest) returns (CreateStaffResponse){}
+    rpc UpdateStaff(UpdateStaffRequest) returns (UpdateStaffResponse){}
+    rpc GetStaffs(GetStaffsRequest) returns (GetStaffsResponse){}
+    rpc DeleteStaff(DeleteStaffRequest) returns (DeleteStaffResponse){}
+    rpc ShowStaff(ShowStaffRequest) returns (ShowStaffResponse){}
+    rpc ShowStaffByPhone(ShowStaffByPhoneRequest) returns (ShowStaffByPhoneResponse){}
+    rpc UpdateStaffStatus(UpdateStaffStatusRequest) returns (UpdateStaffStatusResponse){}
+    rpc GetStaffsByRoleID(GetStaffsByRoleIDRequest) returns (GetStaffsByRoleIDResponse){}
+
+    rpc SignIn(SignInRequest) returns (SignInResponse){}
+    rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse){}
+    rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse){}
+
+    rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse){}
+    rpc UpdateRole(UpdateRoleRequest) returns (UpdateRoleResponse){}
+    rpc GetRoles(GetRolesRequest) returns (GetRolesResponse){}
+    rpc DeleteRole(DeleteRoleRequest) returns (DeleteRoleResponse){}
+    rpc UpdateRoleStatus(UpdateRoleStatusRequest) returns (UpdateRoleStatusResponse){}
+    rpc GetRoleHistories(GetRoleHistoriesRequest) returns (GetRoleHistoriesResponse){}
+    rpc ShowRole(ShowRoleRequest) returns (ShowRoleResponse){}
+
+    rpc GetPermissions(GetPermissionsRequest) returns (GetPermissionsResponse){}
+    rpc CreatePermissions(CreatePermissionsRequest) returns (CreatePermissionsResponse){}
+
+    rpc CreateMember(CreateMemberRequest) returns (CreateMemberResponse){}
+    rpc GetMembers(GetMembersRequest) returns (GetMembersResponse){}
+    rpc GetMembersByIDs(GetMembersByIDsRequest) returns (GetMembersByIDsResponse){}
+    rpc ShowMember(ShowMemberRequest) returns (ShowMemberResponse){}
+    rpc ShowMemberByAccuratePhone(ShowMemberByAccuratePhoneRequest) returns (ShowMemberByAccuratePhoneResponse){}
+    rpc UpdateMember(UpdateMemberRequest) returns (UpdateMemberResponse){}
+    rpc GetBirthdayMembers(GetBirthdayMembersRequest) returns (GetBirthdayMembersResponse){}
+    rpc CreateOrUpdateCallingMember(CreateOrUpdateCallingMemberRequest) returns (CreateOrUpdateCallingMemberResponse){}
+    rpc GetMembersByPhoneSuffix(GetMembersByPhoneSuffixRequest) returns (GetMembersByPhoneSuffixResponse){}
+    rpc CreateWechatMember(CreateWechatMemberRequest) returns (CreateWechatMemberResponse) {}
+    rpc UpdateMemberBranchInfo(UpdateMemberBranchInfoRequest) returns (Response) {}
+    rpc SearchMember(SearchMemberRequest) returns (SearchMemberResponse) {}
+
+    // 推送券对象
+    rpc GetCouponMemberIDs(GetCouponMemberIDsRequest) returns (GetCouponMemberIDsResponse) {}
+    // 推送券对象数量
+    rpc CountCouponMemberIDs(GetCouponMemberIDsRequest) returns (CountCouponMemberIDsResponse) {}
+
+    rpc CreateBranchTag(CreateBranchTagRequest) returns (CreateBranchTagResponse){}
+    rpc GetBranchTags(GetBranchTagsRequest) returns (GetBranchTagsResponse){}
+    rpc UpdateBranchTag(UpdateBranchTagRequest) returns (UpdateBranchTagResponse){}
+    rpc UpdateBranchTagStatus(UpdateBranchTagStatusRequest) returns (UpdateBranchTagStatusResponse){}
+    rpc GetBranchTagsByIDs(GetBranchTagsByIDsRequest) returns (GetBranchTagsByIDsResponse){}
+    rpc ShowBranchTag(ShowBranchTagRequest) returns (ShowBranchTagResponse){}
+
+    rpc SaveBranchAppointment(SaveBranchAppointmentRequest) returns (SaveBranchAppointmentResponse) {}
+    rpc ShowBranchAppointment(ShowBranchAppointmentRequest) returns (ShowBranchAppointmentResponse) {}
+    rpc UpdateBranchAppointmentRoomType(UpdateBranchAppointmentRoomTypeRequest) returns (UpdateBranchAppointmentRoomTypeResponse){}
+    rpc CreateRoomTypeCategory(CreateRoomTypeCategoryRequest) returns (CreateRoomTypeCategoryResponse) {}
+    rpc CreateRoomType(CreateRoomTypeRequest) returns (CreateRoomTypeResponse){}
+    rpc GetRoomTypeCategories(GetRoomTypeCategoriesRequest) returns (GetRoomTypeCategoriesResponse) {}
+    rpc GetRoomTypes(GetRoomTypesRequest) returns (GetRoomTypesResponse){}
+    rpc GetRoomTypesByIDs(GetRoomTypesByIDsRequest) returns (GetRoomTypesByIDsResponse){}
+    rpc UpdateRoomTypeCategory(UpdateRoomTypeCategoryRequest) returns (UpdateRoomTypeCategoryResponse){}
+    rpc UpdateRoomType(UpdateRoomTypeRequest) returns (UpdateRoomTypeResponse){}
+    rpc ShowBranchAppointmentBusinessTime(ShowBranchAppointmentBusinessTimeRequest) returns (ShowBranchAppointmentBusinessTimeResponse) {}
+    rpc ShowRoomType(ShowRoomTypeRequest) returns (ShowRoomTypeResponse){}
+    rpc UpdateRoomTypeStatus(UpdateRoomTypeStatusRequest) returns (Response){}
+
+    rpc CreateInvoice(CreateInvoiceRequest) returns (CreateInvoiceResponse){}
+
+    rpc CreateDistrict(CreateDistrictRequest) returns (CreateDistrictResponse){}
+    rpc UpdateDistrict(UpdateDistrictRequest) returns (UpdateDistrictResponse){}
+    rpc GetDistricts(GetDistrictsRequest) returns (GetDistrictsResponse){}
+
+    rpc GetBranchWithSubMchID(GetBranchWithSubMchIDRequest) returns (GetBranchWithSubMchIDResponse) {}
+    rpc SetBranchSubMchID(SetBranchSubMchIDRequest) returns (Response) {}
+    rpc GetWechatPaySetting(GetWechatPaySettingRequest) returns (GetWechatPaySettingResponse) {}
+    rpc GetWechatPaySettingByAppID(GetWechatPaySettingByAppIDRequest) returns (GetWechatPaySettingResponse) {}
+    rpc SetWechatPaySetting(SetWechatPaySettingRequest) returns (Response) {}
+    rpc GetBranchWechatPaymentSetting(GetBranchWechatPaymentSettingRequest) returns (GetBranchWechatPaymentSettingResponse) {}
+
+    rpc CreateMemberBehavior(CreateMemberBehaviorRequest) returns (Response) {}
+    rpc GetMemberBehaviors(GetMemberBehaviorsRequest) returns (GetMemberBehaviorsResponse) {}
+
+    rpc GetBrands(GetBrandsRequest) returns (GetBrandsResponse) {}
+    rpc CreateBrand(CreateBrandRequest) returns (Response) {}
+    rpc UpdateBrand(UpdateBrandRequest) returns (Response) {}
+    rpc UpdateBrandStatus(UpdateBrandStatusRequest) returns (Response) {}
+
+    rpc CreateBranchBusinessSpecial(CreateBranchBusinessSpecialRequest) returns(Response) {}
+    rpc UpdateBranchBusinessSpecial(UpdateBranchBusinessSpecialRequest) returns(Response) {}
+    rpc UpdateBranchBusinessNormal(UpdateBranchBusinessNormalRequest) returns(Response) {}
+    rpc UpdateBranchBusinessStatus(UpdateBranchBusinessStatusRequest) returns(Response) {}
+    rpc GetBranchBusinesses(GetBranchBusinessesRequest) returns(GetBranchBusinessesResponse) {}
+
+    rpc CreateOrUpdateWechatUser(CreateOrUpdateWechatUserRequest) returns (CreateOrUpdateWechatUserResponse) {}
+    rpc ShowWechatUser(ShowWechatUserRequest) returns (ShowWechatUserResponse) {}
+    rpc GetWechatUsers(GetWechatUsersRequest) returns (GetWechatUsersResponse) {}
+
+    // 获取门店指定时间最近一次营业日
+    rpc GetBranchLatelyBusiness(GetBranchLatelyBusinessRequest) returns (GetBranchLatelyBusinessResponse) {}
+    rpc ShowWechatUserByMember(ShowWechatUserByMemberRequest) returns (ShowWechatUserByMemberResponse) {}
+
+    // CreateConsumeCategory 创建积分类型
+    rpc CreateConsumeCategory (CreateConsumeCategoryRequest) returns (Response) {}
+    // ListConsumeCategory 积分类型列表
+    rpc ListConsumeCategory (ListConsumeCategoryRequest) returns (ListConsumeCategoryResponse) {}
+    // UpdateConsumeCategory 修改积分类型
+    rpc UpdateConsumeCategory (UpdateConsumeCategoryRequest) returns (Response) {}
+    // UpdateConsumeCategoryStatus 修改积分类型状态
+    rpc UpdateConsumeCategoryStatus (UpdateStatusRequest) returns (Response) {}
+    // ShowConsumeCategory 积分类型详情
+    rpc ShowConsumeCategory (ShowConsumeCategoryRequest) returns (ShowConsumeCategoryResponse) {}
+    // GetConsumeCategoryTypes 获取消费类型对应分组
+    rpc GetConsumeCategoryTypes(Empty) returns (GetConsumeCategoryTypesResponse) {}
+    // SetPointRuleDescribe 设置积分规则说明
+    rpc SetPointRuleDescribe(SetPointRuleDescribeRequest) returns (Response) {}
+    // GetPointRuleDescribe 获取积分规则说明
+    rpc GetPointRuleDescribe(Empty) returns (GetPointRuleDescribeResponse) {}
+    // CreatePointRule 创建积分规则
+    rpc CreatePointRule(CreatePointRuleRequest) returns (Response) {}
+    // UpdatePointRule 修改积分规则
+    rpc UpdatePointRule(UpdatePointRuleRequest) returns (Response) {}
+    // UpdatePointRuleStatus 修改积分规则状态
+    rpc UpdatePointRuleStatus(UpdateStatusRequest) returns (Response) {}
+    // ListPointRuleRequest 积分规则列表
+    rpc ListPointRule(ListPointRuleRequest) returns (ListPointRuleResponse) {}
+    // ShowPointRule 积分规则详情
+    rpc ShowPointRule(ShowPointRuleRequest) returns (ShowPointRuleResponse) {}
+    // GetPointRuleAllBranch 获取所有已设置积分规则的门店
+    rpc GetPointRuleAllBranch(Empty) returns (GetPointRuleAllBranchResponse) {}
+    // GetBranchPointRule 获取门店积分规则
+    rpc GetBranchPointRule(GetBranchPointRuleRequest) returns (GetBranchPointRuleResponse) {}
+    // GetBranchPointRules 获取门店所有类型的积分规则
+    rpc GetBranchPointRules(GetBranchPointRulesRequest) returns (GetBranchPointRulesResponse) {}
+    // CreateMemberAddress 新增用户地址
+    rpc CreateMemberAddress(MemberAddress) returns (Response) {}
+    // UpdateMemberAddress 修改用户地址
+    rpc UpdateMemberAddress(MemberAddress) returns (Response) {}
+    // GetMemberAddress 获取用户地址
+    rpc GetMemberAddress(GetMemberAddressRequest) returns (GetMemberAddressResponse) {}
+    // SetMemberAddressDefault 标记为默认地址
+    rpc SetMemberAddressDefault(SetMemberAddressDefaultRequest) returns (Response) {}
+    // GetMemberDefaultAddress 获取默认地址
+    rpc GetMemberDefaultAddress(GetMemberDefaultAddressRequest) returns (GetMemberDefaultAddressResponse) {}
+    // DeleteMemberAddress 删除地址
+    rpc DeleteMemberAddress(DeleteMemberAddressRequest) returns (Response) {}
+
+
+    //成长值
+    // ShowGrowthConfig 查询
+    rpc ShowGrowthConfig(Empty) returns (ShowGrowthConfigResponse) {}
+    // SaveGrowthConfig 保存
+    rpc SaveGrowthConfig(SaveGrowthConfigRequest) returns (Response) {}
+
+    // CreateGrowthRule 新建
+    rpc CreateGrowthRule(CreateGrowthRuleRequest) returns (Response) {}
+    // GetGrowthRules 列表
+    rpc GetGrowthRules(GetGrowthRulesRequest) returns (GetGrowthRulesResponse) {}
+    // ShowGrowthRule 详情
+    rpc ShowGrowthRule(ShowGrowthRuleRequest) returns (ShowGrowthRuleResponse) {}
+    // UpdateGrowthRule 更新
+    rpc UpdateGrowthRule(UpdateGrowthRuleRequest) returns (Response) {}
+    // GetBranchesHasGrowthRule 已设置了规则的门店列表
+    rpc GetBranchesHasGrowthRule(Empty) returns (GetBranchesHasGrowthRuleResponse) {}
+    // GetBranchGrowthRule 获取门店的成长值规则
+    rpc GetBranchGrowthRule(GetBranchGrowthRuleRequest) returns (GetBranchGrowthRuleResponse) {}
+
+    //消费奖励规则
+    rpc GetBranchConsumeRewardRule(GetBranchConsumeRewardRuleRequest) returns (GetBranchConsumeRewardRuleResponse) {};
+
+    //operateType
+    rpc GetOperateTypes(Empty) returns (GetOperateTypesResponse) {};
+    rpc GetActiveTypes(Empty) returns (GetActiveTypesResponse) {};
+
+    rpc SearchGoodsAndPackage(SearchGoodsAndPackageRequest) returns (SearchGoodsAndPackageResponse) {};
+    rpc SearchGoodsOrPackage(SearchGoodsOrPackageRequest) returns (SearchGoodsOrPackageResponse) {};
+    rpc ShowGoods(ShowGoodsRequest) returns (ShowGoodsResponse) {};
+    rpc ShowPackage(ShowPackageRequest) returns (ShowPackageResponse) {};
+    rpc MultiGetGoodsAndPackages(MultiGetGoodsAndPackagesRequest) returns (MultiGetGoodsAndPackagesResponse) {};
+
+    //roomTypeGroup
+    rpc GetRoomTypeGroups(Empty) returns (GetRoomTypeGroupsResponse) {};
+    rpc GetRoomTypeGroupsByRoomTypeID(GetRoomTypeGroupsByRoomTypeIDRequest) returns (GetRoomTypeGroupsResponse) {};
+
+    rpc UpdateMerchantLogo(UpdateMerchantLogoRequest) returns (Response) {};
+    rpc UpdateMerchantUserAgreement(UpdateMerchantUserAgreementRequest) returns (Response) {};
+    rpc ShowMerchant(Empty) returns (ShowMerchantResponse) {};
+}
+
+message Empty {}
+
+message Response {
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+// UpdateStatusRequest 统一定义修改状态request
+message UpdateStatusRequest {
+    string id = 1;
+    string status = 2;
+}

@@ -1,0 +1,92 @@
+syntax = "proto3";
+package payment;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\PaymentServer";
+
+// WechatResponse 微信返回信息
+message WechatResponse {
+  string return_code = 1;
+  string return_msg = 2;
+  string detail = 3;
+  map<string, string> data = 4;
+}
+
+// WechatUnifiedOrderRequest 下单参数
+message WechatUnifiedOrderRequest {
+  string branch_id = 1;
+  map<string, string> string_map = 2;
+  map<string, int64> int64_map = 3;
+}
+
+// WechatUnifiedOrderResponseData 下单返回数据
+message WechatUnifiedOrderResponseData {
+  string wechat_trade_id = 1;
+  WechatResponse wechat_response = 2;
+}
+
+// WechatUnifiedOrderResponse 下单返回
+message WechatUnifiedOrderResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatUnifiedOrderResponseData data = 3;
+}
+
+// WechatOrderQueryRequest 查询订单状态
+message WechatOrderQueryRequest {
+  string wechat_trade_id = 1;
+}
+
+// WechatOrderQueryResponse 查询订单返回
+message WechatOrderQueryResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatResponse data = 3;
+}
+
+// WechatCloseOrderRequest 关闭订单
+message WechatCloseOrderRequest {
+  string branch_id = 1;
+  string wechat_trade_id = 2;
+}
+
+// WechatCloseOrderResponse 关闭订单返回
+message WechatCloseOrderResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatResponse data = 3;
+}
+
+// WechatRefundRequest 退款
+message WechatRefundRequest {
+  string branch_id = 1;
+  string wechat_trade_id = 2;
+  map<string, string> string_map = 3;
+  map<string, int64> int64_map = 4;
+}
+
+// WechatRefundResponseData 退款返回
+message WechatRefundResponseData {
+  string wechat_refund_id = 1;
+  WechatResponse wechat_response = 2;
+}
+
+// WechatRefundResponse 退款返回
+message WechatRefundResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatRefundResponseData data = 3;
+}
+
+// WechatRefundQueryRequest 查询退款状态
+message WechatRefundQueryRequest {
+  string branch_id = 1;
+  string wechat_refund_id = 2;
+}
+
+// WechatRefundQueryResponse 查询退款返回
+message WechatRefundQueryResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatResponse data = 3;
+}

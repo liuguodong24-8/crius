@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package message;
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MessageServer";
+
+
+message StatSmsHistoryRequest {
+    string branch_id = 1;
+    string message_type = 2;
+    string begin_date = 3;
+    string end_date = 4;
+    int32 limit = 5;
+    int32 offset = 6;
+    string order_by = 7;
+    bool with_page = 8;
+    repeated string branch_ids = 9;
+}
+
+message StatSmsHistory {
+    string branch_id = 1;
+    int64 total = 2;
+    int64 succeed = 3;
+    int64 failured = 4;
+}
+
+message StatSmsHistoryResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    StatSmsHistoryData data = 3;
+}
+
+message StatSmsHistoryData {
+    repeated StatSmsHistory stats = 1;
+    int64 total = 2;
+}
+
+message ListSmsHistoryRequest {
+    repeated string ids = 1;
+    string branch_id = 2;
+    string message_type = 3;
+    string begin_date = 4;
+    string end_date = 5;
+    string sms_status = 6;
+    string phone = 7;
+    int32 limit = 8;
+    int32 offset = 9;
+    string order_by = 10;
+    bool with_page = 11;
+}
+
+message DetailSmsHistory {
+    string id = 1;
+    string area_code = 2;
+    string phone = 3;
+    string sign = 4;
+    string content = 5;
+    string status = 6;
+    int64 created_at = 7;
+}
+
+message ListSmsHistoryResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    ListSmsHistoryData data = 3;
+}
+
+message ListSmsHistoryData {
+    repeated DetailSmsHistory histories = 1;
+    int64 total = 2;
+}

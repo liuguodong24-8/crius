@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package message;
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MessageServer";
+
+message SpecialSetting {
+    string begin = 1;
+    string end = 2;
+    string sms_template_id = 3;
+    string sms_template_name = 4;
+    string wechat_template_id = 5;
+    string wechat_template_name = 6;
+}
+
+message Cc {
+    string code = 1;
+    string phone = 2;
+}
+
+message ListMessageSettingRequest {
+    string message_type = 1;
+    string trigger_type = 2;
+    string status = 3;
+    int32 limit = 4;
+    int32 offset = 5;
+    string order_by = 6;
+    bool with_page = 7;
+}
+
+message MessageSetting {
+    string id = 1;
+    string message_type = 2;
+    string message_type_name = 3;
+    string trigger_type = 4;
+    double advance_hour = 5;
+    string sms_template_id = 6;
+    string sms_template_name = 7;
+    string wechat_template_id = 8;
+    string wechat_template_name = 9;
+    repeated SpecialSetting special_setting = 10;
+    repeated Cc cc_list = 11;
+    repeated string special_branches = 12;
+    string status = 13;
+    int64 created_at = 14;
+}
+
+message ListMessageSettingResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    ListMessageSettingData data = 3;
+}
+
+message ListMessageSettingData {
+    repeated MessageSetting settings = 1;
+    int64 total = 2;
+}
+
+message CreateMessageSettingRequest {
+    string message_type = 1;
+    string trigger_type = 2;
+    double advance_hour = 3;
+    string sms_template_id = 4;
+    string wechat_template_id = 5;
+    repeated SpecialSetting special_setting = 6;
+    repeated Cc cc_list = 7;
+    repeated string special_branches = 8;
+    string status = 9;
+}
+
+message CreateMessageSettingResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateMessageSettingRequest {
+    string id = 1;
+    string message_type = 2;
+    string trigger_type = 3;
+    double advance_hour = 4;
+    string sms_template_id = 5;
+    string wechat_template_id = 6;
+    repeated SpecialSetting special_setting = 7;
+    repeated Cc cc_list = 8;
+    repeated string special_branches = 9;
+    string status = 10;
+}
+
+message UpdateMessageSettingResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message ShowMessageSettingRequest {
+    string id = 1;
+}
+
+message ShowMessageSettingResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    MessageSetting data = 3;
+}
+
+message ChangeMessageSettingStatusRequest {
+    string id = 1;
+    string status = 2;
+}
+
+message ChangeMessageSettingStatusResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    MessageSetting data = 3;
+}

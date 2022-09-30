@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package merchantBasic;
+import "proto/merchant-basic/role.proto";
+import "proto/merchant-basic/branch.proto";
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message StaffInfo {
+    string name = 1;
+    string phone = 2;
+    string phone_code = 3;
+    int32 gender = 4;
+    string status = 5;
+    string code = 6;
+    int32 entry_at = 7;
+    int32 quit_at = 8;
+    int32 created_at = 9;
+    string id = 10;
+    string employee_code = 11;
+    bool admin = 12;
+}
+
+message CreateStaffRequest {
+    StaffInfo staff = 1;
+    repeated string roles = 2;
+    repeated string branches = 3;
+}
+
+message CreateStaffResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateStaffRequest {
+    StaffInfo staff = 1;
+    repeated string roles = 2;
+    repeated string branches = 3;
+}
+
+message UpdateStaffResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetStaffsRequest {
+    string name = 1;
+    string phone = 2;
+    int32 gender = 3;
+    int32 date_start = 4;
+    int32 date_end = 5;
+    repeated string branches = 6;
+    int32 offset = 7;
+    int32 limit = 8;
+    string status = 9;
+}
+
+message GetStaffsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    StaffsData data = 3;
+}
+
+message GetStaffsByRoleIDRequest{
+    string role_id = 1;
+}
+
+message GetStaffsByRoleIDResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated StaffInfo data = 3;
+}
+
+message StaffsData {
+    repeated StaffFullInfo staffs = 1;
+    int32 total = 2;
+}
+
+message DeleteStaffRequest{
+    string id = 1;
+}
+
+message DeleteStaffResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateStaffStatusRequest{
+    string id = 1;
+    string status = 2;
+}
+
+message UpdateStaffStatusResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message ShowStaffRequest{
+    string id = 1;
+}
+
+message ShowStaffResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    StaffFullInfo data = 3;
+}
+
+message ShowStaffByPhoneRequest{
+    string phone = 1;
+    string phone_code = 2;
+}
+
+message ShowStaffByPhoneResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    StaffFullInfo data = 3;
+}
+
+message StaffFullInfo{
+    StaffInfo staff = 1;
+    repeated RoleInfo roles = 2;
+    repeated BranchInfo branches = 3;
+}
+
+message SignInRequest{
+    string username = 1;
+    string password = 2;
+}
+
+message SignInResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    SignInData data = 3;
+}
+
+message SignInData{
+    StaffFullInfo staff_full = 1;
+    bool default_password = 2;
+}
+
+message UpdatePasswordRequest{
+    string id = 1;
+    string old_password = 2;
+    string new_password = 3;
+}
+
+message UpdatePasswordResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message ResetPasswordRequest{
+    string id = 1;
+}
+
+message ResetPasswordResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}

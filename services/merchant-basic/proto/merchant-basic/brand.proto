@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message CreateBrandRequest{
+    string name = 1;
+    int32 order = 2;
+    string status = 3;
+}
+
+message UpdateBrandRequest{
+    string id = 1;
+    string name = 2;
+    int32 order = 3;
+    string status = 4;
+}
+
+message UpdateBrandStatusRequest{
+    string id = 1;
+    string status = 2;
+}
+
+message GetBrandsRequest{
+    string name = 1;
+    int32 offset = 2;
+    int32 limit = 3;
+    string status = 4;
+}
+
+message GetBrandsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetBrandsData data = 3;
+}
+
+message GetBrandsData{
+    int32 total = 1;
+    repeated Brand brands = 2;
+}
+
+message Brand{
+    string id = 1;
+    string name = 2;
+    int32 order = 3;
+    string status = 4;
+    int32 created_at = 5;
+}

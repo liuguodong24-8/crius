@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message CreateDistrictRequest{
+	string name = 1;
+    string status = 2;
+}
+
+message CreateDistrictResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateDistrictRequest{
+    string id = 1;
+	string name = 2;
+	string status = 3;
+}
+
+message UpdateDistrictResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetDistrictsRequest{
+    string name = 1;
+	string status = 2;
+    int32 offset = 3;
+    int32 limit = 4;
+}
+
+message GetDistrictsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetDistrictsData data = 3;
+}
+
+message GetDistrictsData{
+    repeated District districts = 1;
+    int32 total = 2;
+}
+
+message District{
+    string id     = 1; 
+	string name   = 2;
+	string code   = 3;
+	string status = 4;
+}

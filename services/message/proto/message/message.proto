@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package message;
+import "proto/message/sms.proto";
+import "proto/message/setting.proto";
+import "proto/message/sms_stat.proto";
+import "proto/message/wechat.proto";
+import "proto/message/wechat_stat.proto";
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MessageServer";
+
+service MessageService {
+  rpc SendSms (SendSmsRequest) returns (SendSmsResponse) {}
+  rpc GetMessageVariable(Empty) returns (MessageVariableResponse) {}
+  // 短信模版
+  rpc CreateSmsTemplate(CreateSmsTemplateRequest) returns (CreateSmsTemplateResponse) {}
+  rpc ListSmsTemplate(ListSmsTemplateRequest) returns (ListSmsTemplateResponse) {}
+  rpc UpdateSmsTemplate(UpdateSmsTemplateRequest) returns (UpdateSmsTemplateResponse) {}
+  rpc ShowSmsTemplate(ShowSmsTemplateRequest) returns (ShowSmsTemplateResponse) {}
+  rpc ChangeSmsTemplateStatus(ChangeSmsTemplateStatusRequest) returns (ChangeSmsTemplateStatusResponse) {}
+  // 消息设置
+  rpc CreateMessageSetting(CreateMessageSettingRequest) returns (CreateMessageSettingResponse) {}
+  rpc ListMessageSetting(ListMessageSettingRequest) returns (ListMessageSettingResponse) {}
+  rpc UpdateMessageSetting(UpdateMessageSettingRequest) returns (UpdateMessageSettingResponse) {}
+  rpc ShowMessageSetting(ShowMessageSettingRequest) returns (ShowMessageSettingResponse) {}
+  rpc ChangeMessageSettingStatus(ChangeMessageSettingStatusRequest) returns (ChangeMessageSettingStatusResponse) {}
+  // 发送记录
+  rpc StatSmsHistory(StatSmsHistoryRequest) returns (StatSmsHistoryResponse) {}
+  rpc ListSmsHistory(ListSmsHistoryRequest) returns (ListSmsHistoryResponse) {}
+  // 获取门店短信模版
+  rpc GetBranchTemplate(GetBranchTemplateRequest) returns (GetBranchTemplateResponse) {}
+  // 短链
+  rpc GetShortURL(GetShortURLRequest) returns (GetShortURLResponse) {}
+
+  // 微信模版
+  rpc ListOfficialLink (Empty) returns (ListOfficialLinkResponse) {}
+  rpc ListMiniprogramLink (Empty) returns (ListMiniprogramLinkResponse) {}
+  rpc CreateWechatTemplate (CreateWechatTemplateRequest) returns (CreateWechatTemplateResponse) {}
+  rpc ListWechatTemplate (ListWechatTemplateRequest) returns (ListWechatTemplateResponse) {}
+  rpc UpdateWechatTemplateStatus (UpdateWechatTemplateStatusRequest) returns (UpdateWechatTemplateStatusResponse) {}
+  rpc UpdateWechatTemplate (UpdateWechatTemplateRequest) returns (UpdateWechatTemplateResponse) {}
+  rpc ShowWechatTemplate (ShowWechatTemplateRequest) returns (ShowWechatTemplateResponse) {}
+  // 发送微信模版消息
+  rpc SendWechatTemplate (SendWechatTemplateRequest) returns (SendWechatTemplateResponse) {}
+
+  rpc WechatStat (WechatStatRequest) returns (WechatStatResponse) {}
+}
+
+message Empty {}
+
+message MessageVariableResponse {
+  message Variable {
+    string system = 1;
+    string system_key = 2;
+    message Message {
+      string category = 1;
+      string category_key = 2;
+      repeated string variables = 3;
+      string trigger = 4;
+      bool setting_disable = 5;
+    }
+    repeated Message message = 3;
+  }
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated Variable data = 3;
+}
+
+message GetBranchTemplateRequest {
+  string branch_id = 1;
+  string message_type = 2;
+  int64 time = 3;
+}
+
+message GetBranchTemplateResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message GetBranchTemplateResponseDate {
+    string id = 1;
+    string trigger_type = 2;
+    int32 advance_hour = 3;
+    SmsTemplate sms_template = 4;
+    WechatTemplate wechat_template = 5;
+    message Cc {
+      string code = 1;
+      string phone = 2;
+    }
+    repeated Cc cc = 6;
+  }
+  GetBranchTemplateResponseDate data = 3;
+}
+
+message GetShortURLRequest {
+  string url = 1;
+}
+
+message GetShortURLResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    string url = 1;
+  }
+  Data data = 3;
+}

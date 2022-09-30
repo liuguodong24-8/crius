@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message CreateRoomTypeCategoryRequest{
+    string name = 1;
+    int32 category = 2;
+    string status = 3;
+}
+
+message CreateRoomTypeCategoryResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetRoomTypeCategoriesRequest{
+    string name = 1;
+    string status = 2;
+    int32 offset = 3;
+    int32 limit = 4;
+    int32 category = 5;
+}
+
+message GetRoomTypeCategoriesResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    RoomTypeCategoriesData data = 3;
+}
+
+message RoomTypeCategoriesData{
+    repeated RoomTypeCategory room_type_categories = 1;
+    int32 total = 2;
+}
+
+message RoomTypeCategory{
+    string id = 1;
+    string name = 2;
+    int32 category = 3;
+    string status = 4;
+}
+
+message UpdateRoomTypeCategoryRequest{
+    string id = 1;
+    string name = 2;
+    int32 category = 3;
+    string status = 4;
+}
+
+message UpdateRoomTypeCategoryResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}

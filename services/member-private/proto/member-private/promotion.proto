@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package memberPrivate;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MemberPrivateServer";
+
+
+message PromotionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message ListPromotionRequest {
+  string name = 1;
+  string branch_id = 2;
+  string status = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+  string order_by = 6;
+  repeated string branch_ids = 7;
+  bool with_page = 8;
+}
+
+message ListPromotionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message ListPromotionData{
+    repeated Promotion data = 1;
+    int32 total = 2;
+  }
+  ListPromotionData data = 3;
+}
+
+message Promotion {
+  string id = 1;
+  string name = 2;
+  int64 begin_at = 3;
+  int64 end_at = 4;
+  string status = 5;
+  int64 created_at = 6;
+  repeated string branch_ids = 7;
+}
+
+message CreatePromotionRequest {
+  string name = 1;
+  int64 begin_at = 2;
+  int64 end_at = 3;
+  string status = 4;
+  repeated string branch_ids = 5;
+}
+
+message CreatePromotionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  Promotion data = 3;
+}
+
+message UpdatePromotionRequest {
+  string id = 1;
+  string name = 2;
+  int64 begin_at = 3;
+  int64 end_at = 4;
+  string status = 5;
+  repeated string branch_ids = 6;
+}
+
+message ShowPromotionRequest {
+  string promotion_id = 1;
+}
+
+message ShowPromotionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  Promotion data = 3;
+}

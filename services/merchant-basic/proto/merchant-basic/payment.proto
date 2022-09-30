@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+
+message BranchSubMchID {
+  string branch_id = 1;
+  string branch_name = 2;
+  string sub_mch_id = 3;
+}
+
+message GetBranchWithSubMchIDRequest {
+  string city_id = 1;
+  string branch_name = 2;
+  int32 offset = 3;
+  int32 limit = 4;
+  string province_id = 5;
+  string district_id = 6;
+}
+message BranchSubMchIDData {
+  repeated BranchSubMchID branches = 1;
+  int32 total = 2;
+}
+message GetBranchWithSubMchIDResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  BranchSubMchIDData data = 3;
+}
+
+message SetBranchSubMchIDRequest {
+  string branch_id = 1;
+  string sub_mch_id = 2;
+}
+
+message GetWechatPaySettingRequest {}
+
+message GetWechatPaySettingByAppIDRequest {
+  string app_id = 1;
+}
+
+message WechatPaySetting {
+  string merchant_id = 1;
+  string app_id = 2;
+  string mch_id = 3;
+  string private_key = 4;
+  string cert_filename = 5;
+  bytes cert_content = 6;
+  string headquarters_sub_mch_id = 7;
+}
+message GetWechatPaySettingResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatPaySetting data = 3;
+}
+
+message SetWechatPaySettingRequest {
+  string app_id = 1;
+  string mch_id = 2;
+  string private_key = 3;
+  string cert_filename = 4;
+  bytes cert_content = 5;
+  string headquarters_sub_mch_id = 6;
+}
+message BranchWechatPaymentSetting {
+  string branch_id = 1;
+  string merchant_id = 2;
+  string app_id = 3;
+  string mch_id = 4;
+  string sub_mch_id = 5;
+  string private_key = 6;
+  string cert_filename = 7;
+  bytes cert_content = 8;
+  string headquarters_sub_mch_id = 9;
+}
+
+message GetBranchWechatPaymentSettingRequest {
+  string branch_id = 1;
+}
+
+message GetBranchWechatPaymentSettingResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  BranchWechatPaymentSetting data = 3;
+}

@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+package message;
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MessageServer";
+
+message ListOfficialLinkResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message OfficialLink {
+    string url = 1;
+    string name = 2;
+  }
+  repeated OfficialLink data = 3;
+}
+
+message ListMiniprogramLinkResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message MiniprogramLink {
+    string url = 1;
+    string name = 2;
+  }
+  repeated MiniprogramLink data = 3;
+}
+
+message CreateWechatTemplateRequest {
+  string template_name = 1;
+  string template_code = 2;
+  string category = 3;
+  string category_key = 4;
+  WechatTemplateContent content = 5;
+  string official_link = 6;
+  string miniprogram_link = 7;
+}
+
+message WechatTemplateContent {
+    WechatTemplateContentBase first = 1;
+    repeated WechatTemplateContentDetail detail = 2;
+    WechatTemplateContentBase remark = 3;
+}
+
+message WechatTemplateContentBase {
+  string value = 1;
+  string color = 2;
+}
+
+message WechatTemplateContentDetail {
+  string name = 1;
+  string value = 2;
+  string color = 3;
+}
+
+message CreateWechatTemplateResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message ListWechatTemplateRequest {
+  string template_name = 1;
+  string status = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+  string order_by = 5;
+  bool with_page = 6;
+}
+
+message WechatTemplate {
+  string id = 1;
+  string template_name = 2;
+  string template_code = 3;
+  WechatTemplateContent content = 4;
+  string official_link = 6;
+  string official_link_name = 7;
+  string miniprogram_link = 8;
+  string miniprogram_link_name = 9;
+  string status = 10;
+  string category = 11;
+  string category_key = 12;
+  int64 created_at = 13;
+}
+
+message ListWechatTemplateResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  ListWechatTemplateData data = 3;
+}
+
+message ListWechatTemplateData {
+  repeated WechatTemplate templates = 1;
+  int64 total = 2;
+}
+
+message UpdateWechatTemplateStatusRequest {
+  string id = 1;
+  string status = 2;
+}
+
+message UpdateWechatTemplateStatusResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message UpdateWechatTemplateRequest {
+  string id = 1;
+  string template_name = 2;
+  string template_code = 3;
+  WechatTemplateContent content = 4;
+  string official_link = 5;
+  string miniprogram_link = 6;
+}
+
+message UpdateWechatTemplateResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message ShowWechatTemplateRequest {
+  string id = 1;
+}
+
+message ShowWechatTemplateResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatTemplate data = 3;
+}
+
+message SendWechatTemplateRequest {
+  string channel = 1;
+  string system = 2;
+  string template_id = 3;
+  WechatTemplateContent content = 4;
+  string branch_id = 5;
+  string message_type = 6;
+  message WechatUser {
+    string member_id = 1;
+    string member_wechat_id = 2;
+    string member_open_id = 3;
+  }
+  WechatUser wechat_user = 7;
+  string official_link = 8;
+  message Miniprogram {
+    string appid = 1;
+    string pagepath = 2;
+  }
+  Miniprogram miniprogram = 9;
+}
+
+message SendWechatTemplateResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}

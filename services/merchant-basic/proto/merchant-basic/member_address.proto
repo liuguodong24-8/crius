@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+
+// 用户地址
+message MemberAddress {
+  string id = 1;
+  string member_id = 2;
+  string name = 3;
+  string phone = 4;
+  string phone_code= 5;
+  string province_id = 6;
+  string city_id = 7;
+  string district_id = 8;
+  string address = 9;
+  bool is_default = 10;
+}
+
+// GetMemberAddressRequest 获取用户地址
+message GetMemberAddressRequest {
+  string member_id = 1;
+}
+
+// GetMemberAddressResponse 获取用户地址
+message GetMemberAddressResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated MemberAddress data = 3;
+}
+
+// SetMemberAddressDefaultRequest 设置为默认地址
+message SetMemberAddressDefaultRequest {
+  string member_id = 1;
+  string id = 2;
+}
+
+// GetMemberDefaultAddressRequest 获取用户默认地址
+message GetMemberDefaultAddressRequest {
+  string member_id = 1;
+}
+
+// GetMemberDefaultAddressResponse 获取用户默认地址
+message GetMemberDefaultAddressResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  MemberAddress data = 3;
+}
+
+// DeleteMemberAddressRequest 删除地址
+message DeleteMemberAddressRequest {
+  string id = 1;
+}

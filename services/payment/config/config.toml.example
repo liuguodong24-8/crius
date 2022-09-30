@@ -1,0 +1,39 @@
+## 服务信息
+[app]
+name = "payment"
+desc = "支付服务"
+ip = "127.0.0.1"
+port = 35512
+weight = 1
+
+### 服务中心信息
+[crius]
+address = "127.0.0.1:6666"  ## 服务中心地址
+merchant_basic = "merchant-basic"   ## 商户基础服务名
+
+## 日志
+[log]
+channel = "service-payment"   # 分类
+level = 1                    # 级别 1:debug 2:info 3:warn  4:error 5:panic
+output = ""                  # 日志输出 不配置(默认stdout) 配置文件路劲
+stack = false                # 是否打印堆栈信息
+
+# 数据库
+[database]
+host = "192.168.2.210"       #地址
+port = 5432                 #端口
+user = "micro"              #数据库账户
+password = "123456"         #数据库密码
+dbname = "micro"    #数据库名称
+sslmode = "disable"         #ssl
+log =  true                 #开启sql日志
+
+[migrate]
+table = "payment_migrate"
+schema = "public"
+
+[web]
+address = ":35513"                          ## web端接口地址
+domain = "http://dev-pay.omytech.com.cn"    ## web访问域名
+
+[]

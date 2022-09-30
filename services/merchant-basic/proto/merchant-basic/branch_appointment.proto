@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+import "proto/merchant-basic/branch_business.proto";
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message SaveBranchAppointmentRequest{
+    string branch_id = 1;
+    bool open_appointment = 2;
+    int32 appointment_granularity = 3;
+    repeated BranchAppointmentVR vr = 4;
+    repeated string video = 5;
+    repeated string environment = 6;
+    repeated string meal = 7;
+    repeated string price = 8;
+    bool hot = 9;
+}
+
+message SaveBranchAppointmentResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message ShowBranchAppointmentRequest{
+    string branch_id = 1;
+}
+
+message ShowBranchAppointmentResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    BranchAppointmentData data = 3;
+}
+
+message UpdateBranchAppointmentRoomTypeRequest{
+    repeated RoomTypeNum room_type = 1;
+    string branch_id = 2;
+}
+
+message RoomTypeNum {
+    string room_type_id = 1;
+    int32 room_type_num = 2;
+}
+
+message UpdateBranchAppointmentRoomTypeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message BranchAppointmentData{
+    repeated BranchBusiness business_hours = 1;
+    bool open_appointment = 2;
+    int32 appointment_granularity = 3;
+    repeated BranchAppointmentVR vr = 4;
+    repeated string video = 5;
+    repeated string environment = 6;
+    repeated string meal = 7;
+    repeated string price = 8;
+    bool hot = 9;
+    string branch_id = 10;
+    string room_types = 11;
+}
+
+message ShowBranchAppointmentBusinessTimeRequest{
+    string branch_id = 1;
+    int32 date = 2;
+}
+
+message ShowBranchAppointmentBusinessTimeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    ShowBranchAppointmentBusinessTimeData data = 3;
+}
+
+message ShowBranchAppointmentBusinessTimeData{
+    string begin_time = 1;
+    string end_time = 2;
+    bool is_next_day = 3;
+    int32 granularity = 4;
+    bool open_appointment = 5;
+    bool hot = 6;
+}
+
+message BranchAppointmentVR{
+    string url = 1;
+    string name = 2;
+    string description = 3;
+}

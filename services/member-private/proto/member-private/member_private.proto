@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package memberPrivate;
+
+import "proto/member-private/promotion.proto";
+import "proto/member-private/option.proto";
+import "proto/member-private/staff_shift.proto";
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MemberPrivateServer";
+
+service MemberPrivateServer {
+  rpc ListPromotion (ListPromotionRequest) returns (ListPromotionResponse) {}
+  rpc CreatePromotion (CreatePromotionRequest) returns (CreatePromotionResponse) {}
+  rpc UpdatePromotion (UpdatePromotionRequest) returns (PromotionResponse) {}
+  rpc ShowPromotion (ShowPromotionRequest) returns (ShowPromotionResponse) {}
+  rpc UpdatePromotionStatus (UpdateStatusRequest) returns (UpdateStatusResponse) {}
+
+  rpc ListPromotionOption (ListPromotionOptionRequest) returns (ListPromotionOptionResponse) {}
+  rpc CreatePromotionOption (CreatePromotionOptionRequest) returns (OptionResponse) {}
+  rpc ShowPromotionOption (ShowPromotionOptionRequest) returns (ShowPromotionOptionResponse) {}
+  rpc UpdatePromotionOption (UpdatePromotionOptionRequest) returns (OptionResponse) {}
+  rpc UpdatePromotionOptionStatus (UpdateStatusRequest) returns (UpdateStatusResponse) {}
+
+  // CreateStaffShift 交班
+  rpc CreateStaffShift(CreateStaffShiftRequest) returns (CreateStaffShiftResponse) {}
+  // ListStaffShift 交班列表
+  rpc ListStaffShift(ListStaffShiftRequest) returns (ListStaffShiftResponse) {}
+  // GetStaffShiftTime 获取当前班次时间
+  rpc GetStaffShiftTime(GetStaffShiftTimeRequest) returns (GetStaffShiftTimeResponse) {}
+}
+
+
+message UpdateStatusRequest {
+  string id = 1;
+  string status = 2;
+}
+
+message UpdateStatusResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = ".;proto";
+option php_namespace = "Omy\\Crius";
+package proto;
+
+service CriusService {
+  rpc Heart(Service) returns (Empty) {}
+  rpc Discover(DiscoverRequest) returns (Service) {}
+  rpc DiscoverServers(DiscoverServersRequest) returns (DiscoverServersResponse) {}
+}
+
+message DiscoverServersRequest {
+  repeated string names = 1;
+}
+
+message DiscoverServersResponse {
+  repeated Service services = 1;
+}
+
+message DiscoverRequest {
+  string name = 1;
+}
+
+message Empty {}
+
+message Service {
+  string name = 1;
+  string desc = 2;
+  string ip = 3;
+  int64 port = 4;
+  int32 weight = 5;
+}

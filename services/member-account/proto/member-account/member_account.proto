@@ -1,0 +1,274 @@
+syntax = "proto3";
+
+package memberAccount;
+
+import "proto/member-account/card.proto";
+import "proto/member-account/report.proto";
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MemberAccountServer";
+
+service MemberAccountServer {
+  rpc MakeCard(MakeCardRequest) returns (MakeCardResponse) {}
+  rpc ActivePrimaryCard(ActivePrimaryCardRequest) returns (ActivePrimaryCardResponse) {}
+  rpc ActiveSecondaryCard(ActiveSecondaryCardRequest) returns (ActiveSecondaryCardResponse) {}
+  rpc ActiveBlankCard(ActiveBlankCardRequest) returns (ActiveBlankCardResponse) {}
+  rpc RechargeCard(RechargeCardRequest) returns (RechargeCardResponse) {}
+  rpc BindCard(BindCardRequest) returns (BindCardResponse) {}
+
+  rpc GetCards(GetCardsRequest) returns (GetCardsResponse) {}
+  rpc GetCardsByAccount(GetCardsByAccountRequest) returns (GetCardsByAccountResponse) {}
+  rpc ShowCard(ShowCardRequest) returns (ShowCardResponse) {}
+  rpc ShowCardByID(ShowCardByIDRequest) returns (ShowCardByIDResponse) {}
+  rpc TransferCardBalance(TransferCardBalanceRequest) returns (NoDataResponse) {}
+  rpc UpdateCardStatus(UpdateCardStatusRequest) returns (NoDataResponse) {}
+  rpc ReplaceCard(ReplaceCardRequest) returns (NoDataResponse) {}
+  rpc CancelCard(CancelCardRequest) returns (NoDataResponse) {}
+  rpc ValidateCardPassword(ValidateCardPasswordRequest) returns (NoDataResponse) {}
+  rpc SearchCards(SearchCardsRequest) returns (SearchCardsResponse) {}
+
+  rpc GetAccountsByCardID(GetAccountsByCardIDRequest) returns (GetAccountsByCardIDResponse) {}
+  rpc GetAccounts(GetAccountsRequest) returns (GetAccountsResponse) {}
+  rpc ShowAccount(ShowAccountRequest) returns (ShowAccountResponse) {}
+  rpc UpdateAccountStatus(UpdateAccountStatusRequest) returns (NoDataResponse) {}
+  rpc UpdateAccountBalance(UpdateAccountBalanceRequest) returns (NoDataResponse) {}
+  rpc AddAccountDeduction(AddAccountDeductionRequest) returns (NoDataResponse) {}
+  rpc GetMemberAccounts(GetMemberAccountsRequest) returns (GetMemberAccountsResponse) {}
+
+  rpc GetAccountByMemberID(GetAccountByMemberIDRequest) returns (GetMemberAccountResponse) {}
+  rpc GetAccountByCardCode(GetAccountByCardCodeRequest) returns (GetAccountByCardCodeResponse) {}
+
+  rpc GetBills(GetBillsRequest) returns (GetBillsResponse) {}
+  rpc ShowBill(ShowBillRequest) returns (ShowBillResponse) {}
+  rpc ShowBillByCode(ShowBillByCodeRequest) returns (ShowBillByCodeResponse) {}
+
+
+  // ReportPayment 收款汇总 开卡充值收款方式汇总
+  rpc ReportPayment(ReportPaymentRequest) returns (ReportPaymentResponse) {}
+  // ReportPromotion 按优惠方案汇总
+  rpc ReportPromotion(ReportBillDetailRequest) returns (ReportPromotionResponse) {}
+  // ReportBillDetail 开卡/充值 详情
+  rpc ReportBillDetail(ReportBillDetailRequest) returns (ReportBillDetailResponse) {}
+  // Consume 消费
+  rpc Consume(ConsumeRequest) returns (NoDataResponse) {}
+  // RefundBill 退款
+  rpc RefundBill(RefundBillRequest) returns (NoDataResponse) {}
+}
+
+
+message Account {
+  string id = 1;
+  string member_id = 2;
+  string branch_id = 3;
+  int32 base_value = 4;
+  int32 gift_value = 5;
+  repeated ProductPackage products = 6;
+  repeated ProductPackage packages = 7;
+  string status = 8;
+  string tag_id = 9;
+  int32 create_at = 10;
+  string category = 11;
+}
+
+message AccountWithActionReason {
+  string id = 1;
+  string member_id = 2;
+  string branch_id = 3;
+  int32 base_value = 4;
+  int32 gift_value = 5;
+  repeated ProductPackage products = 6;
+  repeated ProductPackage packages = 7;
+  string status = 8;
+  string tag_id = 9;
+  int32 create_at = 10;
+  string action_reason = 11;
+  string category = 12;
+}
+
+message AccountList {
+  repeated Account accounts = 1;
+  int32 total = 2;
+}
+
+message GetAccountsRequest {
+  string branch_id = 1;
+  string status = 2;
+  int32 offset = 3;
+  int32 limit = 4;
+}
+
+message GetAccountsResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  AccountList data = 3;
+}
+
+message ShowAccountRequest {
+  string id = 1;
+}
+
+message ShowAccountResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  AccountWithActionReason data = 3;
+}
+
+message GetAccountsByCardIDRequest{
+  string id = 1;
+}
+
+message GetAccountsByCardIDResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated AccountWithTag data = 3;
+}
+
+message AccountWithTag {
+  Account account = 1;
+  repeated string branch_ids = 2;
+  string tag_name = 3;
+}
+
+message UpdateAccountStatusRequest {
+  string id = 1;
+  string action = 2;
+  string reason = 3;
+}
+
+message GetBillsRequest {
+  string account_id = 1;
+  string category = 2;
+  int32 offset = 3;
+  int32 limit = 4;
+}
+
+message GetBillsResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  BillsData data = 3;
+}
+
+message Bill {
+  string bill_code = 1;
+  int32 create_at = 2;
+  string branch = 3;
+  repeated ProductPackage packages = 4;
+  int32 cost_base_value = 5;
+  int32 cost_gift_value = 6;
+  repeated ProductPackage products = 7;
+  int32 curr_base_value = 8;
+  int32 curr_gift_value = 9;
+  string change_category = 10;
+  Payments payments = 11;
+  string staff_id = 12;
+  string id = 13;
+  int32 base_value_left = 14;
+  int32 gift_value_left = 15;
+  string card_id = 16;
+  string card_code = 17;
+}
+
+message BillsData {
+  repeated Bill bills = 1;
+  int32 total = 2;
+}
+
+message UpdateAccountBalanceRequest {
+  string bill_code = 1;
+  string branch_id = 2;
+  int32 base_value = 3;
+  int32 gift_value = 4;
+  string reason = 5;
+  repeated CostProductPackageTicketItem products = 6;
+  repeated CostProductPackageTicketItem packages = 7;
+}
+
+message AddAccountDeductionRequest {
+  string bill_number = 1;
+  string card_id = 2;
+  string branch_id = 3;
+  int32 cost_value = 4;
+  string reason = 5;
+  repeated string account_ids = 6;
+}
+
+message CardWithAccount {
+  Card card = 1;
+  repeated Account accounts = 2;
+}
+
+message MemberAccount {
+  repeated CardWithAccount cards = 1;
+}
+
+message GetAccountByMemberIDRequest {
+  string member_id = 1;
+}
+
+message GetAccountByCardCodeRequest {
+  string card_code = 1;
+}
+
+message GetAccountByCardCodeResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  CardWithAccount data = 3;
+}
+
+message GetMemberAccountResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated CardWithAccount data = 3;
+}
+
+message NoDataResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message ShowBillRequest {
+  string bill_id = 1;
+}
+
+message ShowBillResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  Bill data = 3;
+}
+
+message TransferCardBalanceRequest {
+  string source_account_id = 1;
+  string dest_card_id = 2;
+  int32  amount = 3;
+  string operate_branch_id = 6;
+}
+
+message ShowBillByCodeRequest {
+  string bill_code = 1;
+}
+
+message ShowBillByCodeResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  Bill data = 3;
+}
+
+message GetMemberAccountsRequest {
+  string member_id = 1;
+}
+
+message GetMemberAccountsResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated Account data = 3;
+}
+
+message SearchCardsRequest {
+  string card_code = 1;
+}
+
+message SearchCardsResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated CardWithAccount data = 3;
+}

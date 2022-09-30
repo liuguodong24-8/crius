@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message JoinSharedAppointmentRequest{
+    string id = 1;
+    string wechat_id = 2;
+}
+  
+message UpdateAppointmentShareRequest{
+  string id = 1;
+  string message = 2;
+}

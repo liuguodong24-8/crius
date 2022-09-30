@@ -1,0 +1,6 @@
+#sql-migrate 命令配置文件
+development:
+  dialect: postgres
+  datasource: dbname=micro_appointment sslmode=disable user=micro password=123456 host=192.168.1.98 port=5432
+  dir: migrations/postgres
+  table: migrates

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package wechat;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\WechatServer";
+
+message SendTemplateMessageRequest {
+  string channel = 1;
+  string touser = 2;
+  string template_id = 3;
+  string url = 4;
+  string color = 5;
+  message MiniProgram {
+    string appid = 1;
+    string pagepath = 2;
+  }
+  MiniProgram mini_program = 6;
+  message Data {
+    string name = 1;
+    string value = 2;
+    string color = 3;
+  }
+  repeated Data data = 7;
+}
+
+message SendTemplateMessageResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    int64 err_code = 1;
+    string err_msg = 2;
+    int64 msg_id = 3;
+  }
+  Data data = 3;
+}

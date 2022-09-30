@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message Theme{
+    AppointmentTheme appointment_theme = 1;
+    repeated AppointmentThemePackage theme_packages = 2;
+}
+
+message ThemeRoomType{
+    AppointmentTheme appointment_theme = 1;
+    AppointmentThemePackage theme_package = 2;
+    string category_name = 3; // 分类名字
+}
+
+message AppointmentTheme{
+    string id = 1;
+    string color = 2; // 颜色
+    repeated string feature_ids = 3; // 特色id
+    message Content{
+        string name = 1; // 内容名称
+        string content = 2; // 内容
+    }
+    repeated Content contents = 4;
+    string style = 5; // 主题风格
+    repeated string images = 6; // 主题图片
+    string video = 7; // 主题视频
+    repeated string details = 8; // 主题详情
+    int32 weight = 9; // 权值
+    string status = 10; // 状态 opened closed
+    string name = 11; // 主题名称
+    string category_id = 12; // 分类id
+}
+
+message AppointmentThemePackage{
+    string name = 1; // 套餐名称
+    message Package{
+        string id = 1; // 套餐/商品id
+        string category = 2; // product 商品/ package 套餐
+    }
+    repeated Package packages = 2;
+    string decoration = 3; // 装饰布置
+    string staffing = 4; // 人员配置
+    message CustomConfig{
+        string name = 1; // 自定义配置名称
+        string config = 2; // 自定义配置内容
+    }
+    repeated CustomConfig custom_configs = 5;
+    message RoomType{
+        string id = 1; // 房型id
+        int32 price = 2; // 房型价格
+    }
+    repeated RoomType room_types = 6;
+    string id = 7;
+}
+
+message CreateAppointmentThemeRequest{
+    Theme theme = 1;
+}
+
+message UpdateAppointmentThemeRequest{
+    Theme theme = 1;
+}
+
+message UpdateAppointmentThemeStatusRequest{
+    string id = 1;
+    string status = 2; // 主题状态
+}
+
+message GetAppointmentThemesRequest{
+    string name = 1; // 主题名称
+    string status = 2; // 主题状态
+    string category_id = 3; // 主题分类id
+    int32 offset = 4;
+    int32 limit = 5;
+}
+
+message GetAppointmentThemesResponse{
+    message Data{
+        int32 total = 1;
+        repeated AppointmentTheme themes = 2;
+    }
+    int32 error_code = 1;
+    string error_message = 2;
+    Data data = 3;
+}
+
+message ShowAppointmentThemeRequest{
+    string id = 1;
+}
+
+message ShowAppointmentThemeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    Theme data = 3;
+}
+
+message GetAppointmentThemesByRoomTypeRequest{
+    string room_type_id = 1; // 房型id
+    string branch_id = 2; // 门店id
+    int32 date = 3; // 查询日期
+    string theme_id = 4; // 主题id
+}
+
+message GetAppointmentThemesByRoomTypeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated ThemeRoomType data = 3;
+}

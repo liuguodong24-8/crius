@@ -1,0 +1,400 @@
+syntax = "proto3";
+
+package appointment;
+import "proto/appointment/appointment_template.proto";
+import "proto/appointment/appointment_config.proto";
+import "proto/appointment/appointment_calendar.proto";
+import "proto/appointment/caller.proto";
+import "proto/appointment/caller_record.proto";
+import "proto/appointment/appointment_lock.proto";
+import "proto/appointment/appointment_theme_category.proto";
+import "proto/appointment/appointment_theme_feature.proto";
+import "proto/appointment/appointment_theme.proto";
+import "proto/appointment/appointment_share.proto";
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+service AppointmentServer {
+  rpc UpdateAppointmentConfig(AppointmentConfig) returns (Response) {}
+  rpc GetAppointmentConfig(Empty) returns (GetAppointmentConfigResponse) {}
+
+  rpc UpdateTemplateCalendar(UpdateTemplateCalendarRequest) returns (Response) {}
+  rpc GetTemplateCalendar(GetTemplateCalendarRequest) returns (GetTemplateCalendarResponse) {}
+
+  rpc SaveAppointmentTemplate(SaveAppointmentTemplateRequest) returns (SaveAppointmentTemplateResponse) {}
+  rpc ShowAppointmentTemplate(ShowAppointmentTemplateRequest) returns (ShowAppointmentTemplateResponse) {}
+  rpc GetAppointmentTemplateConfigs(GetAppointmentTemplateConfigsRequest) returns (GetAppointmentTemplateConfigsResponse) {}
+  rpc UpdateAppointmentTemplateStatus(UpdateAppointmentTemplateStatusRequest) returns (Response) {}
+
+  rpc CreateAppointment(CreateAppointmentRequest) returns (CreateAppointmentResponse) {}
+  rpc SaveAppointmentLock(SaveAppointmentLockRequest) returns (SaveAppointmentLockResponse) {}
+  rpc DeleteAppointmentLock(DeleteAppointmentLockRequest) returns (Response) {}
+  rpc GetAppointments(GetAppointmentsRequest) returns (GetAppointmentsResponse) {}
+  rpc ShowAppointment(ShowAppointmentRequest) returns (ShowAppointmentResponse) {}
+  rpc UpdateAppointment(UpdateAppointmentRequest) returns (UpdateAppointmentResponse) {}
+  rpc GetAppointmentTemplates(GetAppointmentTemplatesRequest) returns (GetAppointmentTemplatesResponse) {}
+  rpc DeleteAppointment(DeleteAppointmentRequest) returns (Response) {}
+  rpc CancelAppointment(CancelAppointmentRequest) returns (CancelAppointmentResponse) {}
+  rpc PayAppointment(PayAppointmentRequest) returns (Response) {}
+  rpc RefundAppointment(RefundAppointmentRequest) returns (Response) {}
+  rpc ArriveAppointment(ArriveAppointmentRequest) returns (Response) {}
+
+  rpc GetAppointmentRemaining(GetAppointmentRemainingRequest) returns (GetAppointmentRemainingResponse) {}
+  rpc GetAppointmentRemainingFast(GetAppointmentRemainingFastRequest) returns (GetAppointmentRemainingFastResponse) {}
+  rpc GetAppointmentLimit(GetAppointmentLimitRequest) returns (GetAppointmentLimitResponse) {}
+  rpc GetAppointmentRecord(GetAppointmentRecordRequest) returns (GetAppointmentRecordResponse) {}
+  rpc GetAppointmentBreachLimit(GetAppointmentBreachLimitRequest) returns (GetAppointmentBreachLimitResponse){}
+
+  rpc SaveAppointmentTempNumber(SaveAppointmentTempNumberRequest) returns (Response){}
+  rpc UpdateAppointmentTradeInfo(UpdateAppointmentTradeInfoRequest) returns (Response){}
+
+  rpc GetCallers(GetCallersRequest) returns (GetCallersResponse) {}
+  rpc GetCallerRecords(GetCallerRecordsRequest) returns (GetCallerRecordsResponse) {}
+  rpc UpdateCaller(UpdateCallerRequest) returns (Response) {}
+  rpc CreateCallerRecord(CreateCallerRecordRequest) returns (CreateCallerRecordResponse) {}
+  rpc UpdateCallerBlack(UpdateCallerBlackRequest) returns (Response) {}
+  rpc UpdateCallerRecordAction(UpdateCallerRecordActionRequest) returns (Response) {}
+  rpc ShowCallerByPhone(ShowCallerByPhoneRequest) returns (ShowCallerByPhoneResponse) {}
+
+  // 主题分类
+  rpc CreateAppointmentThemeCategory(CreateAppointmentThemeCategoryRequest) returns (Response) {}
+  rpc UpdateAppointmentThemeCategory(UpdateAppointmentThemeCategoryRequest) returns (Response) {}
+  rpc UpdateAppointmentThemeCategoryStatus(UpdateAppointmentThemeCategoryStatusRequest) returns (Response) {}
+  rpc GetAppointmentThemeCategories(GetAppointmentThemeCategoriesRequest) returns (GetAppointmentThemeCategoriesResponse) {}
+  rpc ShowAppointmentThemeCategory(ShowAppointmentThemeCategoryRequest) returns (ShowAppointmentThemeCategoryResponse) {}
+
+  // 主题特色
+  rpc CreateAppointmentThemeFeature(CreateAppointmentThemeFeatureRequest) returns (Response) {}
+  rpc UpdateAppointmentThemeFeature(UpdateAppointmentThemeFeatureRequest) returns (Response) {}
+  rpc UpdateAppointmentThemeFeatureStatus(UpdateAppointmentThemeFeatureStatusRequest) returns (Response) {}
+  rpc GetAppointmentThemeFeatures(GetAppointmentThemeFeaturesRequest) returns (GetAppointmentThemeFeaturesResponse) {}
+  rpc ShowAppointmentThemeFeature(ShowAppointmentThemeFeatureRequest) returns (ShowAppointmentThemeFeatureResponse) {}
+
+    // 主题
+    rpc CreateAppointmentTheme(CreateAppointmentThemeRequest) returns (Response) {}
+    rpc UpdateAppointmentTheme(UpdateAppointmentThemeRequest) returns (Response) {}
+    rpc UpdateAppointmentThemeStatus(UpdateAppointmentThemeStatusRequest) returns (Response) {}
+    rpc GetAppointmentThemes(GetAppointmentThemesRequest) returns (GetAppointmentThemesResponse) {}
+    rpc ShowAppointmentTheme(ShowAppointmentThemeRequest) returns (ShowAppointmentThemeResponse) {}
+    rpc GetAppointmentThemesByRoomType(GetAppointmentThemesByRoomTypeRequest) returns (GetAppointmentThemesByRoomTypeResponse) {}
+
+    rpc JoinSharedAppointment(JoinSharedAppointmentRequest) returns (Response) {}
+    rpc UpdateAppointmentShare(UpdateAppointmentShareRequest) returns (Response) {}
+
+    rpc AppointmentOpenRoom(AppointmentOpenRoomRequest) returns (Response) {}
+    rpc AppointmentCancelOpenRoom(AppointmentCancelOpenRoomRequest) returns (Response) {}
+}
+
+message Response {
+  int32 error_code = 1;
+  string error_message = 2;
+}
+
+message Appointment{
+  string id = 1;
+  string called_code = 2;
+  string called_phone = 3;
+  string appointment_code = 4;
+  string appointment_phone = 5;
+  string name = 6;
+  int32 gender = 7;
+  int32 way = 8;
+  int32 customer_num = 9;
+  string branch_id = 10;
+  int32 appointment_at = 11;
+  int32 appointment_date = 12;
+  int32 expire_at = 13;
+  string room_type_id = 14;
+  int32 deposit_fee = 15;
+  bool flower_cake = 16;
+  string flower_cake_remark = 17;
+  string remark = 18;
+  string operator = 19;
+  string status = 20;
+  string cancelled_reason = 21;
+  int32 charging_way = 22;
+  string trade_id = 23;
+  string refund_id = 24;
+  int32 keep_at = 25;
+  int32 cancel_at = 26;
+  string trade_type = 27;
+  int32 arrived_at = 28;
+  int32 refunding_at = 29;
+  int32 refunded_at = 30;
+  string member_id = 31;
+  int32 refund_amount = 32;
+  int32 created_at = 33;
+  string share_message = 34;
+  message WechatID{
+    string id = 1;
+    int32 time = 2;
+  }
+  repeated WechatID wechat_ids = 35;
+  string code = 36;
+  bool breach = 37;
+  string breach_reason = 38;
+}
+
+message CreateAppointmentRequest{
+  Appointment appointment = 1;
+  string lock_id = 2;
+  string theme_package_id = 3;
+}
+
+message CreateAppointmentResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  string data = 3;
+}
+
+message CancelAppointmentRequest{
+  string id = 1;
+  string operate_message = 2;
+}
+
+message CancelAppointmentResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  int32 data = 3;
+}
+
+message PayAppointmentRequest{
+  string id = 1;
+}
+
+message RefundAppointmentRequest{
+  string id = 1;
+}
+
+message ArriveAppointmentRequest{
+  string id = 1;
+  int32 arrived_at = 2;
+}
+
+message GetAppointmentsRequest{
+  string branch_id = 1;
+  string phone_tail = 2;
+  string phone = 3;
+  int32 date_start = 4;
+  int32 date_end = 5;
+  int32 way = 6;
+  int32 is_deposit_payed = 7;
+  int32 flower_cake = 8;
+  repeated string room_type_id = 9;
+  repeated string status = 10;
+  int32 offset = 11;
+  int32 limit = 12;
+  string called_phone = 13;
+  string any_phone = 14;
+  string member_id = 15;
+  string wechat_id = 16;
+  string theme_id = 17;
+  string package_id = 18;
+  string called_code = 19;
+}
+
+message GetAppointmentsResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  GetAppointmentsData data = 3;
+}
+
+message GetAppointmentsData {
+  message Data {
+    Appointment appointment = 1;
+    ThemeRoomType theme = 2;
+  }
+  repeated Data appointments = 1;
+  int32 total = 2;
+}
+
+message UpdateAppointmentRequest{
+  Appointment appointment = 1;
+  string lock_id = 2;
+  string theme_package_id = 3;
+}
+
+message UpdateAppointmentResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  UpdateAppointmentData data = 3;
+}
+
+message UpdateAppointmentData{
+  string appointment_id = 1;
+  string new_appointment_id = 2;
+}
+
+message GetAppointmentRemainingRequest{
+  string branch_id = 1;
+  int32 business_date = 2;
+  int32 way = 3;
+}
+
+message GetAppointmentRemainingResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated AppointmentRemaining data = 3;
+}
+
+message AppointmentRemaining{
+  string room_type_id = 1;
+  repeated RoomTypeNum room_type_num = 2;
+  int32 deposit_fee = 3;
+}
+
+message RoomTypeNum{
+  int32 way = 1;
+  int32 num = 2;
+  string time = 3;
+  int32 total = 4;
+  bool is_next_day = 5;
+}
+
+message GetAppointmentRecordRequest{
+  string id = 1;
+}
+
+message GetAppointmentRecordResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated AppointmentRecord data = 3;
+}
+
+message AppointmentRecord {
+  string operate = 1;
+  string operator_id = 2;
+  int32 created_at = 3;
+  string before = 4;
+  string after = 5;
+}
+
+message SaveAppointmentTempNumberRequest{
+  string branch_id = 1;
+  int32 num = 2;
+  int32 appointment_at = 3;
+  int32 way = 4;
+  string room_type_id = 5;
+  int32 appointment_date = 6;
+}
+
+message ShowAppointmentRequest{
+  string id = 1;
+}
+
+message ShowAppointmentResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    Appointment appointment = 1;
+    ThemeRoomType theme = 2;
+  }
+  Data data = 3;
+}
+
+message UpdateAppointmentTradeInfoRequest{
+  string id = 1;
+  string trade_id = 2;
+  string refund_id = 3;
+  string status = 4;
+  string trade_type = 5;
+}
+
+message GetAppointmentLimitRequest{
+  string phone_code = 1;
+  string phone = 2;
+  string status = 3;
+  int32 date_start = 4;
+  int32 date_end = 5;
+  string any_phone = 6;
+  string member_id = 7;
+}
+
+message GetAppointmentLimitResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  GetAppointmentLimitData data = 3;
+}
+
+message GetAppointmentLimitData{
+  repeated BranchAppointmentNum branch_num = 1;
+  repeated WayAppointmentNum way_num = 2;
+  int32 limit = 3;
+}
+
+message BranchAppointmentNum {
+  int32 num = 1;
+  string branch_id = 2;
+}
+
+message WayAppointmentNum {
+  int32 num = 1;
+  int32 way = 2;
+}
+
+message GetAppointmentRemainingFastRequest{
+  int32 business_date = 1;
+  string time = 2;
+  int32 num = 3;
+  repeated GetAppointmentRemainingFastBranches branches = 4;
+  int32 way = 5;
+  int32 limit = 6;
+}
+
+message GetAppointmentRemainingFastBranches{
+  string branch_id = 1;
+  int32 distance = 2;
+}
+
+message GetAppointmentRemainingFastResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  GetAppointmentRemainingFastData data = 3;
+}
+
+message GetAppointmentRemainingFastData{
+  repeated Recommend recommends = 1;
+}
+
+message Recommend{
+  string branch_id = 1;
+  string time = 2;
+  bool is_next_day = 3;
+  string room_type_id = 4;
+  string room_name = 5;
+  int32 distance = 6;
+  int32 customer_max = 7;
+  int32 customer_min = 8;
+  int32 deposit_fee = 9;
+}
+
+message DeleteAppointmentRequest{
+  string id = 1;
+}
+
+message GetAppointmentBreachLimitRequest{
+  string phone = 1;
+  string phone_code = 2;
+}
+
+message GetAppointmentBreachLimitResponse{
+  int32 error_code = 1;
+  string error_message = 2;
+  GetAppointmentBreachLimitData data = 3;
+}
+
+message GetAppointmentBreachLimitData{
+  int32 num = 1;
+  int32 limit = 2;
+}
+
+message AppointmentOpenRoomRequest {
+  string id = 1;
+  string room_id = 2;
+  int32 open_at = 3;
+}
+
+message AppointmentCancelOpenRoomRequest{
+  string id = 1;
+}

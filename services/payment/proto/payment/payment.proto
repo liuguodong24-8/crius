@@ -1,0 +1,18 @@
+syntax = "proto3";
+package payment;
+import "proto/payment/wechat.proto";
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\PaymentServer";
+
+service PaymentServer {
+  // WechatUnifiedOrder 统一下单
+  rpc WechatUnifiedOrder(WechatUnifiedOrderRequest) returns (WechatUnifiedOrderResponse) {}
+  // WechatOrderQuery 查询订单
+  rpc WechatOrderQuery(WechatOrderQueryRequest) returns (WechatOrderQueryResponse) {}
+  // WechatCloseOrder 关闭订单
+  rpc WechatCloseOrder(WechatCloseOrderRequest) returns (WechatCloseOrderResponse) {}
+  // WechatRefund 退款
+  rpc WechatRefund(WechatRefundRequest) returns (WechatRefundResponse) {}
+  // WechatRefundQuery 查询退款
+  rpc WechatRefundQuery(WechatRefundQueryRequest) returns (WechatRefundQueryResponse) {}
+}

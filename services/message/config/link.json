@@ -1,0 +1,30 @@
+{
+  "official" : [
+    {
+      "url" : "/index/pay",
+      "name" : "待支付"
+    },
+    {
+      "url" : "/index/appointed",
+      "name" : "已预约"
+    },
+    {
+      "url" : "/index/cancel",
+      "name" : "已取消"
+    },
+    {
+      "url" : "/index/refunding",
+      "name" : "退款中"
+    },
+    {
+      "url" : "/index/refund-success",
+      "name" : "退款成功"
+    }
+  ],
+  "miniprogram" : [
+    {
+      "url" : "/index",
+      "name" : "小程序首页"
+    }
+  ]
+}

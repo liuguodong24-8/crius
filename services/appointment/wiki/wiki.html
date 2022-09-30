@@ -1,0 +1,6334 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_calendar.proto">proto/appointment/appointment_calendar.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.GetTemplateCalendarRequest"><span class="badge">M</span>GetTemplateCalendarRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetTemplateCalendarResponse"><span class="badge">M</span>GetTemplateCalendarResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetTemplateCalendarResponse.Calendar"><span class="badge">M</span>GetTemplateCalendarResponse.Calendar</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateTemplateCalendarRequest"><span class="badge">M</span>UpdateTemplateCalendarRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateTemplateCalendarRequest.CalendarSetting"><span class="badge">M</span>UpdateTemplateCalendarRequest.CalendarSetting</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_config.proto">proto/appointment/appointment_config.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.AppointmentConfig"><span class="badge">M</span>AppointmentConfig</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.Empty"><span class="badge">M</span>Empty</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentConfigResponse"><span class="badge">M</span>GetAppointmentConfigResponse</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_lock.proto">proto/appointment/appointment_lock.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.DeleteAppointmentLockRequest"><span class="badge">M</span>DeleteAppointmentLockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.SaveAppointmentLockRequest"><span class="badge">M</span>SaveAppointmentLockRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.SaveAppointmentLockResponse"><span class="badge">M</span>SaveAppointmentLockResponse</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment.proto">proto/appointment/appointment.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.Appointment"><span class="badge">M</span>Appointment</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentRecord"><span class="badge">M</span>AppointmentRecord</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentRemaining"><span class="badge">M</span>AppointmentRemaining</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.BranchAppointmentNum"><span class="badge">M</span>BranchAppointmentNum</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateAppointmentRequest"><span class="badge">M</span>CreateAppointmentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateAppointmentResponse"><span class="badge">M</span>CreateAppointmentResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.DeleteAppointmentRequest"><span class="badge">M</span>DeleteAppointmentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentBreachLimitData"><span class="badge">M</span>GetAppointmentBreachLimitData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentBreachLimitRequest"><span class="badge">M</span>GetAppointmentBreachLimitRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentBreachLimitResponse"><span class="badge">M</span>GetAppointmentBreachLimitResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentLimitData"><span class="badge">M</span>GetAppointmentLimitData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentLimitRequest"><span class="badge">M</span>GetAppointmentLimitRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentLimitResponse"><span class="badge">M</span>GetAppointmentLimitResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRecordRequest"><span class="badge">M</span>GetAppointmentRecordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRecordResponse"><span class="badge">M</span>GetAppointmentRecordResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRemainingFastBranches"><span class="badge">M</span>GetAppointmentRemainingFastBranches</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRemainingFastData"><span class="badge">M</span>GetAppointmentRemainingFastData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRemainingFastRequest"><span class="badge">M</span>GetAppointmentRemainingFastRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRemainingFastResponse"><span class="badge">M</span>GetAppointmentRemainingFastResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRemainingRequest"><span class="badge">M</span>GetAppointmentRemainingRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentRemainingResponse"><span class="badge">M</span>GetAppointmentRemainingResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentsData"><span class="badge">M</span>GetAppointmentsData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentsRequest"><span class="badge">M</span>GetAppointmentsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentsResponse"><span class="badge">M</span>GetAppointmentsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.Recommend"><span class="badge">M</span>Recommend</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.Response"><span class="badge">M</span>Response</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.RoomTypeNum"><span class="badge">M</span>RoomTypeNum</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.SaveAppointmentTempNumberRequest"><span class="badge">M</span>SaveAppointmentTempNumberRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentRequest"><span class="badge">M</span>ShowAppointmentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentResponse"><span class="badge">M</span>ShowAppointmentResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentResponse.Data"><span class="badge">M</span>ShowAppointmentResponse.Data</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentData"><span class="badge">M</span>UpdateAppointmentData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentRequest"><span class="badge">M</span>UpdateAppointmentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentResponse"><span class="badge">M</span>UpdateAppointmentResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentStatusData"><span class="badge">M</span>UpdateAppointmentStatusData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentStatusRequest"><span class="badge">M</span>UpdateAppointmentStatusRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentStatusResponse"><span class="badge">M</span>UpdateAppointmentStatusResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentTradeInfoRequest"><span class="badge">M</span>UpdateAppointmentTradeInfoRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.WayAppointmentNum"><span class="badge">M</span>WayAppointmentNum</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#appointment.AppointmentServer"><span class="badge">S</span>AppointmentServer</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_template.proto">proto/appointment/appointment_template.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.AppointmentTemplate"><span class="badge">M</span>AppointmentTemplate</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentTemplateConfig"><span class="badge">M</span>AppointmentTemplateConfig</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentTemplateConfigsRequest"><span class="badge">M</span>GetAppointmentTemplateConfigsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentTemplateConfigsResponse"><span class="badge">M</span>GetAppointmentTemplateConfigsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentTemplatesData"><span class="badge">M</span>GetAppointmentTemplatesData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentTemplatesRequest"><span class="badge">M</span>GetAppointmentTemplatesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentTemplatesResponse"><span class="badge">M</span>GetAppointmentTemplatesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.SaveAppointmentTemplateRequest"><span class="badge">M</span>SaveAppointmentTemplateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.SaveAppointmentTemplateResponse"><span class="badge">M</span>SaveAppointmentTemplateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentTemplateRequest"><span class="badge">M</span>ShowAppointmentTemplateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentTemplateResponse"><span class="badge">M</span>ShowAppointmentTemplateResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.TemplateRoomConfigColumn"><span class="badge">M</span>TemplateRoomConfigColumn</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentTemplateStatusRequest"><span class="badge">M</span>UpdateAppointmentTemplateStatusRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_theme_category.proto">proto/appointment/appointment_theme_category.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.AppointmentThemeCategory"><span class="badge">M</span>AppointmentThemeCategory</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateAppointmentThemeCategoryRequest"><span class="badge">M</span>CreateAppointmentThemeCategoryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemeCategoriesRequest"><span class="badge">M</span>GetAppointmentThemeCategoriesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemeCategoriesResponse"><span class="badge">M</span>GetAppointmentThemeCategoriesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemeCategoriesResponse.Data"><span class="badge">M</span>GetAppointmentThemeCategoriesResponse.Data</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentThemeCategoryRequest"><span class="badge">M</span>ShowAppointmentThemeCategoryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentThemeCategoryResponse"><span class="badge">M</span>ShowAppointmentThemeCategoryResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentThemeCategoryRequest"><span class="badge">M</span>UpdateAppointmentThemeCategoryRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentThemeCategoryStatusRequest"><span class="badge">M</span>UpdateAppointmentThemeCategoryStatusRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_theme_feature.proto">proto/appointment/appointment_theme_feature.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.AppointmentThemeFeature"><span class="badge">M</span>AppointmentThemeFeature</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateAppointmentThemeFeatureRequest"><span class="badge">M</span>CreateAppointmentThemeFeatureRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemeFeaturesRequest"><span class="badge">M</span>GetAppointmentThemeFeaturesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemeFeaturesResponse"><span class="badge">M</span>GetAppointmentThemeFeaturesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemeFeaturesResponse.Data"><span class="badge">M</span>GetAppointmentThemeFeaturesResponse.Data</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentThemeFeatureRequest"><span class="badge">M</span>ShowAppointmentThemeFeatureRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentThemeFeatureResponse"><span class="badge">M</span>ShowAppointmentThemeFeatureResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentThemeFeatureRequest"><span class="badge">M</span>UpdateAppointmentThemeFeatureRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentThemeFeatureStatusRequest"><span class="badge">M</span>UpdateAppointmentThemeFeatureStatusRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fappointment_theme.proto">proto/appointment/appointment_theme.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.AppointmentTheme"><span class="badge">M</span>AppointmentTheme</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentTheme.Content"><span class="badge">M</span>AppointmentTheme.Content</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentThemePackage"><span class="badge">M</span>AppointmentThemePackage</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentThemePackage.CustomConfig"><span class="badge">M</span>AppointmentThemePackage.CustomConfig</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentThemePackage.Package"><span class="badge">M</span>AppointmentThemePackage.Package</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.AppointmentThemePackage.RoomType"><span class="badge">M</span>AppointmentThemePackage.RoomType</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateAppointmentThemeRequest"><span class="badge">M</span>CreateAppointmentThemeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemesByRoomTypeRequest"><span class="badge">M</span>GetAppointmentThemesByRoomTypeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemesByRoomTypeResponse"><span class="badge">M</span>GetAppointmentThemesByRoomTypeResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemesRequest"><span class="badge">M</span>GetAppointmentThemesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemesResponse"><span class="badge">M</span>GetAppointmentThemesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetAppointmentThemesResponse.Data"><span class="badge">M</span>GetAppointmentThemesResponse.Data</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentThemeRequest"><span class="badge">M</span>ShowAppointmentThemeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowAppointmentThemeResponse"><span class="badge">M</span>ShowAppointmentThemeResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.Theme"><span class="badge">M</span>Theme</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ThemeRoomType"><span class="badge">M</span>ThemeRoomType</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentThemeRequest"><span class="badge">M</span>UpdateAppointmentThemeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateAppointmentThemeStatusRequest"><span class="badge">M</span>UpdateAppointmentThemeStatusRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fcaller.proto">proto/appointment/caller.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.Caller"><span class="badge">M</span>Caller</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetCallersData"><span class="badge">M</span>GetCallersData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetCallersRequest"><span class="badge">M</span>GetCallersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetCallersResponse"><span class="badge">M</span>GetCallersResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowCallerByPhoneRequest"><span class="badge">M</span>ShowCallerByPhoneRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.ShowCallerByPhoneResponse"><span class="badge">M</span>ShowCallerByPhoneResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.Tag"><span class="badge">M</span>Tag</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateCallerBlackRequest"><span class="badge">M</span>UpdateCallerBlackRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateCallerRequest"><span class="badge">M</span>UpdateCallerRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#proto%2fappointment%2fcaller_record.proto">proto/appointment/caller_record.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#appointment.CallerRecord"><span class="badge">M</span>CallerRecord</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateCallerRecordData"><span class="badge">M</span>CreateCallerRecordData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateCallerRecordRequest"><span class="badge">M</span>CreateCallerRecordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.CreateCallerRecordResponse"><span class="badge">M</span>CreateCallerRecordResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetCallerRecordsData"><span class="badge">M</span>GetCallerRecordsData</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetCallerRecordsRequest"><span class="badge">M</span>GetCallerRecordsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.GetCallerRecordsResponse"><span class="badge">M</span>GetCallerRecordsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#appointment.UpdateCallerRecordActionRequest"><span class="badge">M</span>UpdateCallerRecordActionRequest</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_calendar.proto">proto/appointment/appointment_calendar.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.GetTemplateCalendarRequest">GetTemplateCalendarRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>year</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetTemplateCalendarResponse">GetTemplateCalendarResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetTemplateCalendarResponse.Calendar">GetTemplateCalendarResponse.Calendar</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetTemplateCalendarResponse.Calendar">GetTemplateCalendarResponse.Calendar</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>calendar_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>calendar_category</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>business_date</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>template_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>template_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>template_color</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateTemplateCalendarRequest">UpdateTemplateCalendarRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>begin_date</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end_date</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#appointment.UpdateTemplateCalendarRequest.CalendarSetting">UpdateTemplateCalendarRequest.CalendarSetting</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateTemplateCalendarRequest.CalendarSetting">UpdateTemplateCalendarRequest.CalendarSetting</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>template_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>weeks</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>category</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_config.proto">proto/appointment/appointment_config.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.AppointmentConfig">AppointmentConfig</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>keep_time</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remind_time</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>order_limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_num_warn</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>payment_time</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cancel_time</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refund_percent_before</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refund_percent_after</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>breach_months</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>breach_total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>decoration_fee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.Empty">Empty</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="appointment.GetAppointmentConfigResponse">GetAppointmentConfigResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentConfig">AppointmentConfig</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_lock.proto">proto/appointment/appointment_lock.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.DeleteAppointmentLockRequest">DeleteAppointmentLockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.SaveAppointmentLockRequest">SaveAppointmentLockRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_group_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_date</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.SaveAppointmentLockResponse">SaveAppointmentLockResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment.proto">proto/appointment/appointment.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.Appointment">Appointment</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>called_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>called_phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>customer_num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_date</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expire_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deposit_fee</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>flower_cake</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>flower_cake_remark</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remark</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operator</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cancelled_reason</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>charging_way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>trade_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refund_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>keep_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cancel_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>trade_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>arrived_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refunding_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refunded_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>member_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refund_amount</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentRecord">AppointmentRecord</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>operate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operator_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>before</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>after</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentRemaining">AppointmentRemaining</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_num</td>
+                  <td><a href="#appointment.RoomTypeNum">RoomTypeNum</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deposit_fee</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.BranchAppointmentNum">BranchAppointmentNum</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateAppointmentRequest">CreateAppointmentRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointment</td>
+                  <td><a href="#appointment.Appointment">Appointment</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme_package_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateAppointmentResponse">CreateAppointmentResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.DeleteAppointmentRequest">DeleteAppointmentRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentBreachLimitData">GetAppointmentBreachLimitData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentBreachLimitRequest">GetAppointmentBreachLimitRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentBreachLimitResponse">GetAppointmentBreachLimitResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentBreachLimitData">GetAppointmentBreachLimitData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentLimitData">GetAppointmentLimitData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_num</td>
+                  <td><a href="#appointment.BranchAppointmentNum">BranchAppointmentNum</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way_num</td>
+                  <td><a href="#appointment.WayAppointmentNum">WayAppointmentNum</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentLimitRequest">GetAppointmentLimitRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>phone_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>any_phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>member_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentLimitResponse">GetAppointmentLimitResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentLimitData">GetAppointmentLimitData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRecordRequest">GetAppointmentRecordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRecordResponse">GetAppointmentRecordResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentRecord">AppointmentRecord</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRemainingFastBranches">GetAppointmentRemainingFastBranches</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>distance</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRemainingFastData">GetAppointmentRemainingFastData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>recommends</td>
+                  <td><a href="#appointment.Recommend">Recommend</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRemainingFastRequest">GetAppointmentRemainingFastRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>business_date</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>branches</td>
+                  <td><a href="#appointment.GetAppointmentRemainingFastBranches">GetAppointmentRemainingFastBranches</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRemainingFastResponse">GetAppointmentRemainingFastResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentRemainingFastData">GetAppointmentRemainingFastData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRemainingRequest">GetAppointmentRemainingRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>business_date</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentRemainingResponse">GetAppointmentRemainingResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentRemaining">AppointmentRemaining</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentsData">GetAppointmentsData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointments</td>
+                  <td><a href="#appointment.Appointment">Appointment</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentsRequest">GetAppointmentsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone_tail</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_deposit_payed</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>flower_cake</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>called_phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>any_phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>member_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentsResponse">GetAppointmentsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentsData">GetAppointmentsData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.Recommend">Recommend</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_next_day</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>distance</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>customer_max</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>customer_min</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deposit_fee</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.Response">Response</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.RoomTypeNum">RoomTypeNum</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_next_day</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.SaveAppointmentTempNumberRequest">SaveAppointmentTempNumberRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_date</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentRequest">ShowAppointmentRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentResponse">ShowAppointmentResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.ShowAppointmentResponse.Data">ShowAppointmentResponse.Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentResponse.Data">ShowAppointmentResponse.Data</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointment</td>
+                  <td><a href="#appointment.Appointment">Appointment</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme</td>
+                  <td><a href="#appointment.ThemeRoomType">ThemeRoomType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentData">UpdateAppointmentData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointment_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>new_appointment_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentRequest">UpdateAppointmentRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointment</td>
+                  <td><a href="#appointment.Appointment">Appointment</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lock_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme_package_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentResponse">UpdateAppointmentResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.UpdateAppointmentData">UpdateAppointmentData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentStatusData">UpdateAppointmentStatusData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>refund_amount</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentStatusRequest">UpdateAppointmentStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operate_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentStatusResponse">UpdateAppointmentStatusResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.UpdateAppointmentStatusData">UpdateAppointmentStatusData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentTradeInfoRequest">UpdateAppointmentTradeInfoRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>trade_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>refund_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>trade_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.WayAppointmentNum">WayAppointmentNum</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="appointment.AppointmentServer">AppointmentServer</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UpdateAppointmentConfig</td>
+                <td><a href="#appointment.AppointmentConfig">AppointmentConfig</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentConfig</td>
+                <td><a href="#appointment.Empty">Empty</a></td>
+                <td><a href="#appointment.GetAppointmentConfigResponse">GetAppointmentConfigResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateTemplateCalendar</td>
+                <td><a href="#appointment.UpdateTemplateCalendarRequest">UpdateTemplateCalendarRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetTemplateCalendar</td>
+                <td><a href="#appointment.GetTemplateCalendarRequest">GetTemplateCalendarRequest</a></td>
+                <td><a href="#appointment.GetTemplateCalendarResponse">GetTemplateCalendarResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SaveAppointmentTemplate</td>
+                <td><a href="#appointment.SaveAppointmentTemplateRequest">SaveAppointmentTemplateRequest</a></td>
+                <td><a href="#appointment.SaveAppointmentTemplateResponse">SaveAppointmentTemplateResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ShowAppointmentTemplate</td>
+                <td><a href="#appointment.ShowAppointmentTemplateRequest">ShowAppointmentTemplateRequest</a></td>
+                <td><a href="#appointment.ShowAppointmentTemplateResponse">ShowAppointmentTemplateResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentTemplateConfigs</td>
+                <td><a href="#appointment.GetAppointmentTemplateConfigsRequest">GetAppointmentTemplateConfigsRequest</a></td>
+                <td><a href="#appointment.GetAppointmentTemplateConfigsResponse">GetAppointmentTemplateConfigsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentTemplateStatus</td>
+                <td><a href="#appointment.UpdateAppointmentTemplateStatusRequest">UpdateAppointmentTemplateStatusRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateAppointment</td>
+                <td><a href="#appointment.CreateAppointmentRequest">CreateAppointmentRequest</a></td>
+                <td><a href="#appointment.CreateAppointmentResponse">CreateAppointmentResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SaveAppointmentLock</td>
+                <td><a href="#appointment.SaveAppointmentLockRequest">SaveAppointmentLockRequest</a></td>
+                <td><a href="#appointment.SaveAppointmentLockResponse">SaveAppointmentLockResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteAppointmentLock</td>
+                <td><a href="#appointment.DeleteAppointmentLockRequest">DeleteAppointmentLockRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentStatus</td>
+                <td><a href="#appointment.UpdateAppointmentStatusRequest">UpdateAppointmentStatusRequest</a></td>
+                <td><a href="#appointment.UpdateAppointmentStatusResponse">UpdateAppointmentStatusResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointments</td>
+                <td><a href="#appointment.GetAppointmentsRequest">GetAppointmentsRequest</a></td>
+                <td><a href="#appointment.GetAppointmentsResponse">GetAppointmentsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ShowAppointment</td>
+                <td><a href="#appointment.ShowAppointmentRequest">ShowAppointmentRequest</a></td>
+                <td><a href="#appointment.ShowAppointmentResponse">ShowAppointmentResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointment</td>
+                <td><a href="#appointment.UpdateAppointmentRequest">UpdateAppointmentRequest</a></td>
+                <td><a href="#appointment.UpdateAppointmentResponse">UpdateAppointmentResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentTemplates</td>
+                <td><a href="#appointment.GetAppointmentTemplatesRequest">GetAppointmentTemplatesRequest</a></td>
+                <td><a href="#appointment.GetAppointmentTemplatesResponse">GetAppointmentTemplatesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteAppointment</td>
+                <td><a href="#appointment.DeleteAppointmentRequest">DeleteAppointmentRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentRemaining</td>
+                <td><a href="#appointment.GetAppointmentRemainingRequest">GetAppointmentRemainingRequest</a></td>
+                <td><a href="#appointment.GetAppointmentRemainingResponse">GetAppointmentRemainingResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentRemainingFast</td>
+                <td><a href="#appointment.GetAppointmentRemainingFastRequest">GetAppointmentRemainingFastRequest</a></td>
+                <td><a href="#appointment.GetAppointmentRemainingFastResponse">GetAppointmentRemainingFastResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentLimit</td>
+                <td><a href="#appointment.GetAppointmentLimitRequest">GetAppointmentLimitRequest</a></td>
+                <td><a href="#appointment.GetAppointmentLimitResponse">GetAppointmentLimitResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentRecord</td>
+                <td><a href="#appointment.GetAppointmentRecordRequest">GetAppointmentRecordRequest</a></td>
+                <td><a href="#appointment.GetAppointmentRecordResponse">GetAppointmentRecordResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentBreachLimit</td>
+                <td><a href="#appointment.GetAppointmentBreachLimitRequest">GetAppointmentBreachLimitRequest</a></td>
+                <td><a href="#appointment.GetAppointmentBreachLimitResponse">GetAppointmentBreachLimitResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SaveAppointmentTempNumber</td>
+                <td><a href="#appointment.SaveAppointmentTempNumberRequest">SaveAppointmentTempNumberRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentTradeInfo</td>
+                <td><a href="#appointment.UpdateAppointmentTradeInfoRequest">UpdateAppointmentTradeInfoRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCallers</td>
+                <td><a href="#appointment.GetCallersRequest">GetCallersRequest</a></td>
+                <td><a href="#appointment.GetCallersResponse">GetCallersResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCallerRecords</td>
+                <td><a href="#appointment.GetCallerRecordsRequest">GetCallerRecordsRequest</a></td>
+                <td><a href="#appointment.GetCallerRecordsResponse">GetCallerRecordsResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateCaller</td>
+                <td><a href="#appointment.UpdateCallerRequest">UpdateCallerRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateCallerRecord</td>
+                <td><a href="#appointment.CreateCallerRecordRequest">CreateCallerRecordRequest</a></td>
+                <td><a href="#appointment.CreateCallerRecordResponse">CreateCallerRecordResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateCallerBlack</td>
+                <td><a href="#appointment.UpdateCallerBlackRequest">UpdateCallerBlackRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateCallerRecordAction</td>
+                <td><a href="#appointment.UpdateCallerRecordActionRequest">UpdateCallerRecordActionRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ShowCallerByPhone</td>
+                <td><a href="#appointment.ShowCallerByPhoneRequest">ShowCallerByPhoneRequest</a></td>
+                <td><a href="#appointment.ShowCallerByPhoneResponse">ShowCallerByPhoneResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateAppointmentThemeCategory</td>
+                <td><a href="#appointment.CreateAppointmentThemeCategoryRequest">CreateAppointmentThemeCategoryRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p>主题分类</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentThemeCategory</td>
+                <td><a href="#appointment.UpdateAppointmentThemeCategoryRequest">UpdateAppointmentThemeCategoryRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentThemeCategoryStatus</td>
+                <td><a href="#appointment.UpdateAppointmentThemeCategoryStatusRequest">UpdateAppointmentThemeCategoryStatusRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentThemeCategories</td>
+                <td><a href="#appointment.GetAppointmentThemeCategoriesRequest">GetAppointmentThemeCategoriesRequest</a></td>
+                <td><a href="#appointment.GetAppointmentThemeCategoriesResponse">GetAppointmentThemeCategoriesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ShowAppointmentThemeCategory</td>
+                <td><a href="#appointment.ShowAppointmentThemeCategoryRequest">ShowAppointmentThemeCategoryRequest</a></td>
+                <td><a href="#appointment.ShowAppointmentThemeCategoryResponse">ShowAppointmentThemeCategoryResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateAppointmentThemeFeature</td>
+                <td><a href="#appointment.CreateAppointmentThemeFeatureRequest">CreateAppointmentThemeFeatureRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p>主题特色</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentThemeFeature</td>
+                <td><a href="#appointment.UpdateAppointmentThemeFeatureRequest">UpdateAppointmentThemeFeatureRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentThemeFeatureStatus</td>
+                <td><a href="#appointment.UpdateAppointmentThemeFeatureStatusRequest">UpdateAppointmentThemeFeatureStatusRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentThemeFeatures</td>
+                <td><a href="#appointment.GetAppointmentThemeFeaturesRequest">GetAppointmentThemeFeaturesRequest</a></td>
+                <td><a href="#appointment.GetAppointmentThemeFeaturesResponse">GetAppointmentThemeFeaturesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ShowAppointmentThemeFeature</td>
+                <td><a href="#appointment.ShowAppointmentThemeFeatureRequest">ShowAppointmentThemeFeatureRequest</a></td>
+                <td><a href="#appointment.ShowAppointmentThemeFeatureResponse">ShowAppointmentThemeFeatureResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateAppointmentTheme</td>
+                <td><a href="#appointment.CreateAppointmentThemeRequest">CreateAppointmentThemeRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p>主题</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentTheme</td>
+                <td><a href="#appointment.UpdateAppointmentThemeRequest">UpdateAppointmentThemeRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateAppointmentThemeStatus</td>
+                <td><a href="#appointment.UpdateAppointmentThemeStatusRequest">UpdateAppointmentThemeStatusRequest</a></td>
+                <td><a href="#appointment.Response">Response</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentThemes</td>
+                <td><a href="#appointment.GetAppointmentThemesRequest">GetAppointmentThemesRequest</a></td>
+                <td><a href="#appointment.GetAppointmentThemesResponse">GetAppointmentThemesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ShowAppointmentTheme</td>
+                <td><a href="#appointment.ShowAppointmentThemeRequest">ShowAppointmentThemeRequest</a></td>
+                <td><a href="#appointment.ShowAppointmentThemeResponse">ShowAppointmentThemeResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAppointmentThemesByRoomType</td>
+                <td><a href="#appointment.GetAppointmentThemesByRoomTypeRequest">GetAppointmentThemesByRoomTypeRequest</a></td>
+                <td><a href="#appointment.GetAppointmentThemesByRoomTypeResponse">GetAppointmentThemesByRoomTypeResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_template.proto">proto/appointment/appointment_template.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.AppointmentTemplate">AppointmentTemplate</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>color</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>updated_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>begin_time</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>end_time</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_next_day</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentTemplateConfig">AppointmentTemplateConfig</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>template_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>advance_day</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>deposit_fee</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>configure</td>
+                  <td><a href="#appointment.TemplateRoomConfigColumn">TemplateRoomConfigColumn</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentTemplateConfigsRequest">GetAppointmentTemplateConfigsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>template_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentTemplateConfigsResponse">GetAppointmentTemplateConfigsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentTemplateConfig">AppointmentTemplateConfig</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentTemplatesData">GetAppointmentTemplatesData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>templates</td>
+                  <td><a href="#appointment.AppointmentTemplate">AppointmentTemplate</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentTemplatesRequest">GetAppointmentTemplatesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentTemplatesResponse">GetAppointmentTemplatesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentTemplatesData">GetAppointmentTemplatesData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.SaveAppointmentTemplateRequest">SaveAppointmentTemplateRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>template</td>
+                  <td><a href="#appointment.AppointmentTemplate">AppointmentTemplate</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#appointment.AppointmentTemplateConfig">AppointmentTemplateConfig</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.SaveAppointmentTemplateResponse">SaveAppointmentTemplateResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentTemplateRequest">ShowAppointmentTemplateRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentTemplateResponse">ShowAppointmentTemplateResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentTemplate">AppointmentTemplate</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.TemplateRoomConfigColumn">TemplateRoomConfigColumn</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>way</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>time</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>num</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_next_day</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentTemplateStatusRequest">UpdateAppointmentTemplateStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_theme_category.proto">proto/appointment/appointment_theme_category.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.AppointmentThemeCategory">AppointmentThemeCategory</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类名字 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>分类权值 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类状态 opened closed </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateAppointmentThemeCategoryRequest">CreateAppointmentThemeCategoryRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>category</td>
+                  <td><a href="#appointment.AppointmentThemeCategory">AppointmentThemeCategory</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemeCategoriesRequest">GetAppointmentThemeCategoriesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类名字 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类状态 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemeCategoriesResponse">GetAppointmentThemeCategoriesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentThemeCategoriesResponse.Data">GetAppointmentThemeCategoriesResponse.Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemeCategoriesResponse.Data">GetAppointmentThemeCategoriesResponse.Data</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>categories</td>
+                  <td><a href="#appointment.AppointmentThemeCategory">AppointmentThemeCategory</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentThemeCategoryRequest">ShowAppointmentThemeCategoryRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentThemeCategoryResponse">ShowAppointmentThemeCategoryResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentThemeCategory">AppointmentThemeCategory</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentThemeCategoryRequest">UpdateAppointmentThemeCategoryRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>category</td>
+                  <td><a href="#appointment.AppointmentThemeCategory">AppointmentThemeCategory</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentThemeCategoryStatusRequest">UpdateAppointmentThemeCategoryStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类状态 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_theme_feature.proto">proto/appointment/appointment_theme_feature.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.AppointmentThemeFeature">AppointmentThemeFeature</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>特色名字 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>特色权值 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>特色状态 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>icon</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>特色图标 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateAppointmentThemeFeatureRequest">CreateAppointmentThemeFeatureRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>feature</td>
+                  <td><a href="#appointment.AppointmentThemeFeature">AppointmentThemeFeature</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemeFeaturesRequest">GetAppointmentThemeFeaturesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>特色名字 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>特色状态 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemeFeaturesResponse">GetAppointmentThemeFeaturesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentThemeFeaturesResponse.Data">GetAppointmentThemeFeaturesResponse.Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemeFeaturesResponse.Data">GetAppointmentThemeFeaturesResponse.Data</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>features</td>
+                  <td><a href="#appointment.AppointmentThemeFeature">AppointmentThemeFeature</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentThemeFeatureRequest">ShowAppointmentThemeFeatureRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentThemeFeatureResponse">ShowAppointmentThemeFeatureResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.AppointmentThemeFeature">AppointmentThemeFeature</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentThemeFeatureRequest">UpdateAppointmentThemeFeatureRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>feature</td>
+                  <td><a href="#appointment.AppointmentThemeFeature">AppointmentThemeFeature</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentThemeFeatureStatusRequest">UpdateAppointmentThemeFeatureStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>特色状态 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/appointment_theme.proto">proto/appointment/appointment_theme.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.AppointmentTheme">AppointmentTheme</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>color</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>颜色 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>feature_ids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>特色id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>contents</td>
+                  <td><a href="#appointment.AppointmentTheme.Content">AppointmentTheme.Content</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>style</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题风格 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>images</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>主题图片 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>video</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题视频 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>detail</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题详情 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>权值 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>状态 opened closed </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题名称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>category_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类id </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentTheme.Content">AppointmentTheme.Content</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>内容名称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>内容 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentThemePackage">AppointmentThemePackage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>套餐名称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>packages</td>
+                  <td><a href="#appointment.AppointmentThemePackage.Package">AppointmentThemePackage.Package</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>decoration</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>装饰布置 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>staffing</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>人员配置 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>custom_configs</td>
+                  <td><a href="#appointment.AppointmentThemePackage.CustomConfig">AppointmentThemePackage.CustomConfig</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>room_types</td>
+                  <td><a href="#appointment.AppointmentThemePackage.RoomType">AppointmentThemePackage.RoomType</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentThemePackage.CustomConfig">AppointmentThemePackage.CustomConfig</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>自定义配置名称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>config</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>自定义配置内容 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentThemePackage.Package">AppointmentThemePackage.Package</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>套餐/商品id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>category</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>product 商品/ package 套餐 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.AppointmentThemePackage.RoomType">AppointmentThemePackage.RoomType</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>房型id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>房型价格 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateAppointmentThemeRequest">CreateAppointmentThemeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>theme</td>
+                  <td><a href="#appointment.Theme">Theme</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemesByRoomTypeRequest">GetAppointmentThemesByRoomTypeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>room_type_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>房型id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>branch_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>门店id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>查询日期 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemesByRoomTypeResponse">GetAppointmentThemesByRoomTypeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.ThemeRoomType">ThemeRoomType</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemesRequest">GetAppointmentThemesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题名称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题状态 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>category_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题分类id </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemesResponse">GetAppointmentThemesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetAppointmentThemesResponse.Data">GetAppointmentThemesResponse.Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetAppointmentThemesResponse.Data">GetAppointmentThemesResponse.Data</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>themes</td>
+                  <td><a href="#appointment.AppointmentTheme">AppointmentTheme</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentThemeRequest">ShowAppointmentThemeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowAppointmentThemeResponse">ShowAppointmentThemeResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.Theme">Theme</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.Theme">Theme</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointment_theme</td>
+                  <td><a href="#appointment.AppointmentTheme">AppointmentTheme</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme_packages</td>
+                  <td><a href="#appointment.AppointmentThemePackage">AppointmentThemePackage</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ThemeRoomType">ThemeRoomType</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointment_theme</td>
+                  <td><a href="#appointment.AppointmentTheme">AppointmentTheme</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme_package</td>
+                  <td><a href="#appointment.AppointmentThemePackage">AppointmentThemePackage</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>category_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分类名字 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentThemeRequest">UpdateAppointmentThemeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>theme</td>
+                  <td><a href="#appointment.Theme">Theme</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateAppointmentThemeStatusRequest">UpdateAppointmentThemeStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>主题状态 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/caller.proto">proto/appointment/caller.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.Caller">Caller</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>merchant_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone_tail</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone_suffix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_black</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>black_reason</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_call_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_operator</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_call_action</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#appointment.Tag">Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetCallersData">GetCallersData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>callers</td>
+                  <td><a href="#appointment.Caller">Caller</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetCallersRequest">GetCallersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>phone_suffix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_black</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetCallersResponse">GetCallersResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetCallersData">GetCallersData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowCallerByPhoneRequest">ShowCallerByPhoneRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.ShowCallerByPhoneResponse">ShowCallerByPhoneResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.Caller">Caller</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.Tag">Tag</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tag</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>color</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateCallerBlackRequest">UpdateCallerBlackRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_black</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reason</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateCallerRequest">UpdateCallerRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tags</td>
+                  <td><a href="#appointment.Tag">Tag</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/appointment/caller_record.proto">proto/appointment/caller_record.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="appointment.CallerRecord">CallerRecord</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>merchant_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>caller_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operator</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>call_action</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>call_at</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateCallerRecordData">CreateCallerRecordData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>caller_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>caller_record_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateCallerRecordRequest">CreateCallerRecordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>gender</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.CreateCallerRecordResponse">CreateCallerRecordResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.CreateCallerRecordData">CreateCallerRecordData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetCallerRecordsData">GetCallerRecordsData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>records</td>
+                  <td><a href="#appointment.CallerRecord">CallerRecord</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetCallerRecordsRequest">GetCallerRecordsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>date_start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>date_end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>phone</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.GetCallerRecordsResponse">GetCallerRecordsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>error_code</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>error_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#appointment.GetCallerRecordsData">GetCallerRecordsData</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="appointment.UpdateCallerRecordActionRequest">UpdateCallerRecordActionRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>action</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+

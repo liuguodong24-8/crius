@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package memberAccount;
+
+import "proto/member-account/card.proto";
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MemberAccountServer";
+
+// ReportPaymentRequest 收款汇总 开卡充值收款金额按付款方式汇总
+message ReportPaymentRequest {
+  string branch_id = 1;
+  int64 begin_time = 2;
+  int64 end_time = 3;
+}
+
+message ReportPaymentResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Payment {
+    string way = 1;
+    string way_desc = 2;
+    int32 open_fee = 3;
+    int32 recharge_fee = 4;
+  }
+  repeated Payment data = 3;
+}
+
+
+// ReportBillDetailRequest 开卡/充值优惠方案汇总，开卡详情，充值详情
+message ReportBillDetailRequest {
+  string branch_id = 1;
+  int64 begin_time = 2;
+  int64 end_time = 3;
+  bool with_page = 4;
+  repeated string report_type = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+// ReportPromotionResponse 开卡充值汇总 按充值方案汇总
+message ReportPromotionResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Report {
+    string promotion_option_id = 1;
+    string promotion_option_name = 2;
+    int32 total = 3;
+    int32 open_total = 4;
+    int32 recharge_total = 5;
+    int32 total_value = 6;
+  }
+  message Data {
+    repeated Report data = 1;
+    int64 total = 2;
+  }
+  Data data = 3;
+}
+
+message ReportBillDetailResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Report {
+    string id = 1;
+    string card_id = 2;
+    string card_code = 3;
+    Payments payments = 4;
+    message PromotionOption {
+      string promotion_option_id = 1;
+      string promotion_option_name = 2;
+      int32 count = 3;
+      int32 recharge_value = 4;
+    }
+    repeated PromotionOption promotion_options = 5;
+    int32 recharge_value = 6;
+  }
+  message Data {
+    repeated Report data = 1;
+    int64 total = 2;
+  }
+  Data data = 3;
+}

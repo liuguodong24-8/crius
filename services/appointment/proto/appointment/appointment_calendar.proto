@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message UpdateTemplateCalendarRequest {
+    string branch_id = 1;
+    int64 begin_date = 2;
+    int64 end_date = 3;
+    message CalendarSetting {
+      string template_id = 1;
+      repeated int32 weeks = 2;
+      string category = 3;
+      repeated string theme_ids = 4;
+    }
+    repeated CalendarSetting settings = 4;
+  }
+  
+  message GetTemplateCalendarRequest {
+    string branch_id = 1;
+    int32 year = 2;
+  }
+  
+  message GetTemplateCalendarResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    message Calendar {
+      string calendar_id = 1;
+      string calendar_category = 4;
+      int64 business_date = 2;
+      string template_id = 3;
+      string template_name = 5;
+      string template_color = 6;
+      repeated string theme_ids = 7;
+    }
+    repeated Calendar data = 3;
+  }
+  

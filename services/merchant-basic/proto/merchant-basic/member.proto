@@ -1,0 +1,199 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message MemberInfo {
+    string id = 1;
+    string name = 2;
+    string phone = 3;
+    string phone_code = 4;
+    int32 gender = 5;
+    string avatar = 6;
+    string city_code = 7;
+    string code = 8;
+    string first_branch_id = 9;
+    string staff_id = 10;
+    int32 created_at = 11;
+    string channel = 12;
+    string birthday = 13;
+    string first_brand = 14;
+    uint32 behavior_count = 15;
+}
+
+message CreateMemberRequest {
+    MemberInfo member = 1;
+}
+
+message CreateMemberResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    string data = 3;
+}
+
+message UpdateMemberRequest {
+    string member_id = 1;
+    string name = 2;
+    string phone = 3;
+    string phone_code = 4;
+    int32 gender = 5;
+    string avatar = 6;
+    string birthday = 7;
+}
+
+message UpdateMemberResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetMembersRequest {
+    string name = 1;
+    string phone_code = 2;
+    string phone = 3;
+    string channel = 4;
+    int32 offset = 5;
+    int32 limit = 6;
+    int32 gender = 7;
+    string first_brand = 8;
+    string in_channel = 9;
+}
+
+message GetMembersResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    MembersData data = 3;
+}
+
+message MembersData {
+    repeated MemberInfo members = 1;
+    int32 total = 2;
+}
+
+message ShowMemberRequest {
+    string id = 1;
+}
+
+message ShowMemberResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    MemberInfo data = 3;
+}
+
+message ShowMemberByAccuratePhoneRequest {
+    string phone_code = 1;
+    string phone = 2;
+}
+
+message ShowMemberByAccuratePhoneResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    MemberInfo data = 3;
+}
+
+
+message GetMembersByIDsRequest {
+    repeated string ids = 1;
+}
+
+message GetMembersByIDsResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated MemberInfo data = 3;
+}
+
+message GetBirthdayMembersRequest {
+    string birthday = 1;
+}
+
+message GetBirthdayMembersResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated MemberInfo data = 3;
+}
+
+message CreateOrUpdateCallingMemberRequest {
+    string name = 1;
+    string phone = 2;
+    string phone_code = 3;
+    int32 gender = 4;
+    string channel = 5;
+    bool can_overwrite = 6;
+    string branch_id = 7;
+}
+
+message CreateOrUpdateCallingMemberResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    string data = 3;
+}
+
+message GetMembersByPhoneSuffixRequest {
+    string phone_suffix = 1;
+}
+
+message GetMembersByPhoneSuffixResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated MemberInfo data = 3;
+}
+
+message CreateWechatMemberRequest {
+    string phone = 1;
+    string phone_code = 2;
+    string name = 3;
+    int32 gender = 4;
+    string birthday = 5;
+    string avatar = 6;
+}
+
+message CreateWechatMemberResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    string data = 3;
+}
+
+message UpdateMemberBranchInfoRequest {
+    string member_id = 1;
+    string branch_id = 2;
+}
+
+message GetCouponMemberIDsRequest {
+    repeated string city_codes = 1;
+    repeated string branch_ids = 2;
+    int32 gender = 3;
+    repeated string phones = 4;
+    int64 create_at = 5;
+    int32 limit = 6;
+}
+
+message CouponMember {
+    string id = 1;
+    int64 created_at = 2;
+}
+
+message GetCouponMemberIDsResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated CouponMember data = 3;
+}
+
+message CountCouponMemberIDsResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    int64 data = 3;
+}
+
+message SearchMemberRequest {
+    string name = 1;
+    string phone = 2;
+}
+
+message SearchMemberResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated MemberInfo data = 3;
+}

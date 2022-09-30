@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message ActiveType {
+    string id = 1;
+    string name = 2;
+    string parent_id = 3;
+}
+
+message GetActiveTypesResponse {
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated ActiveType data = 3;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message UpdateMerchantLogoRequest{
+    string logo = 1;
+}
+
+message UpdateMerchantUserAgreementRequest{
+    string user_agreement = 1;
+    string agreement_file_format = 2;
+}
+
+message ShowMerchantResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    message Data{
+        string logo = 1;
+        string user_agreement = 2;
+        string agreement_file_format = 3;
+        string name = 4;
+    }
+    Data data =3;
+}

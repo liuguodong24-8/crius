@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package wechat;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\WechatServer";
+
+message OfficialAuthURLRequest {
+  string channel = 1;
+  string scope = 2;
+  string state = 3;
+  string url = 4;
+}
+
+message OfficialAuthURLResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    string url = 1;
+  }
+  Data data = 3;
+}
+
+message OfficialCodeGetUserRequest {
+  string channel = 1;
+  string code = 2;
+}
+
+message OfficialCodeGetUserResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message BaseWechatUser {
+    string appid = 1;
+    string openid = 2;
+  }
+  BaseWechatUser data = 3;
+}
+
+message OfficialOpenidGetUserRequest {
+  string channel = 1;
+  string openid = 2;
+}
+
+message WechatUser {
+  string appid = 1;
+  string openid = 2;
+  bool follow = 3;
+  string nickname = 4;
+  int32 sex = 5;
+  string province = 6;
+  string city = 7;
+  string headimgurl = 8;
+  repeated string privilege = 9;
+  string unionid = 10;
+}
+
+message OfficialOpenidGetUserResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatUser data = 3;
+}
+
+message OfficialJsSdkRequest {
+  string channel = 1;
+  string url = 2;
+}
+
+message OfficialJsSdkResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  message Data {
+    string appid = 1;
+    string nonce_str = 2;
+    int64 timestamp = 3;
+    string signature = 4;
+  }
+  Data data = 3;
+}

@@ -1,0 +1,445 @@
+[
+  {
+    "system": "商户基础系统",
+    "system_key": "merchant",
+    "message": [
+      {
+        "category": "员工修改密码",
+        "category_key": "merchant.staff_edit",
+        "variables": [
+          "员工姓名",
+          "密码修改时间",
+          "密码修改状态"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "编辑员工信息",
+        "category_key": "merchant.staff_edit_info",
+        "variables": [
+          "员工姓名",
+          "电话",
+          "性别",
+          "所属门店",
+          "员工角色"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "重置密码",
+        "category_key": "merchant.staff_reset_passwd",
+        "variables": [
+          "员工姓名",
+          "重置时间",
+          "重置状态"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "验证码",
+        "category_key": "merchant.captcha",
+        "variables": [],
+        "trigger": "other",
+        "setting_disable": true
+      },
+      {
+        "category": "自定义",
+        "category_key": "merchant.user_defined",
+        "variables": [],
+        "trigger": "other",
+        "setting_disable": true
+      }
+    ]
+  },
+  {
+    "system": "会员系统",
+    "system_key": "member",
+    "message": [
+      {
+        "category": "生日祝福",
+        "category_key": "member.birthday",
+        "variables": [
+          "会员姓名",
+          "性别",
+          "生日",
+          "门店",
+          "城市"
+        ],
+        "trigger": "time"
+      },
+      {
+        "category": "会员开卡",
+        "category_key": "member.open_card",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "城市",
+          "门店",
+          "优惠方案",
+          "充值金额",
+          "账户余额",
+          "账户本金",
+          "账户赠金",
+          "赠品",
+          "优惠券"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "开副卡",
+        "category_key": "member.open_sub_card",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "副卡金额",
+          "时间",
+          "门店"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "会员充值",
+        "category_key": "member.recharge",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "时间",
+          "门店",
+          "优惠方案",
+          "充值金额",
+          "账户余额",
+          "账户本金",
+          "账户赠金",
+          "赠品",
+          "优惠券"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "绑卡",
+        "category_key": "member.bind_card",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "时间",
+          "门店"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "修改会员",
+        "category_key": "member.edit",
+        "variables": [
+          "会员姓名",
+          "联系电话",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "划账-划账卡",
+        "category_key": "member.transfer",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "划账金额",
+          "门店",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "划账-到账卡",
+        "category_key": "member.transfer_dest",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "到账金额",
+          "门店",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "会员卡挂失",
+        "category_key": "member.card_lost",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "找回会员卡",
+        "category_key": "member.find_card",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "会员卡补卡",
+        "category_key": "member.replace_card",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "时间",
+          "补卡费用"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "会员卡注销申请",
+        "category_key": "member.cancelling",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "时间",
+          "注销原因"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "会员卡注销",
+        "category_key": "member.canceled",
+        "variables": [
+          "会员姓名",
+          "会员卡号",
+          "注销状态",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "账户冻结",
+        "category_key": "member.account_frozen",
+        "variables": [
+          "会员姓名",
+          "冻结原因",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "账户解冻",
+        "category_key": "member.account_thaw",
+        "variables": [
+          "会员姓名",
+          "解冻原因",
+          "时间"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "添加扣款",
+        "category_key": "member.account_deduction",
+        "variables": [
+          "会员姓名",
+          "关联账单号",
+          "会员卡",
+          "门店",
+          "消费本金",
+          "消费赠金",
+          "赠品",
+          "优惠券",
+          "操作原因"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "修改余额",
+        "category_key": "member.account_edit",
+        "variables": [
+          "会员姓名",
+          "账户余额",
+          "账户本金",
+          "账户赠金",
+          "赠品",
+          "优惠券",
+          "时间",
+          "会员卡",
+          "门店"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "消费",
+        "category_key": "member.consume",
+        "variables": [
+          "会员姓名",
+          "时间",
+          "门店",
+          "消费金额",
+          "赠品",
+          "优惠券",
+          "使用积分"
+        ],
+        "trigger": "event"
+      }
+    ]
+  },
+  {
+    "system": "预约系统",
+    "system_key": "appointment",
+    "message": [
+      {
+        "category": "普通预约成功",
+        "category_key": "appointment.create",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "普通预约订金链接",
+        "category_key": "appointment.deposit_pay_link",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金",
+          "订金链接"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "普通预约成功已付",
+        "category_key": "appointment.deposit_payed",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "普通预约修改",
+        "category_key": "appointment.update",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "普通预约退款中",
+        "category_key": "appointment.deposit_refunding",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金",
+          "退款金额"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "普通预约退款成功",
+        "category_key": "appointment.deposit_refunded",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金",
+          "退款金额"
+        ],
+        "trigger": "event"
+      },
+      {
+        "category": "普通预约到期提醒",
+        "category_key": "appointment.expiration_remind",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金"
+        ],
+        "trigger": "time"
+      },
+      {
+        "category": "普通预约取消",
+        "category_key": "appointment.cancelled",
+        "variables": [
+          "门店",
+          "房型",
+          "客户",
+          "性别",
+          "到店日期",
+          "星期",
+          "到店时间",
+          "预约人数",
+          "门店电话",
+          "门店地址",
+          "门店导航",
+          "订金"
+        ],
+        "trigger": "event"
+      }
+    ]
+  }
+]

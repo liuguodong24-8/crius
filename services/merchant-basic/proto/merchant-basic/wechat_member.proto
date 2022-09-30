@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message WechatUser {
+  string id = 1;
+  string openid = 2;
+  string appid = 3;
+  string member_id = 4;
+  string nickname = 5;
+  int32 sex = 6;
+  string province = 7;
+  string city = 8;
+  string headimgurl = 9;
+  string unionid = 10;
+  string created_at = 11;
+  string member_phone = 12;
+  string member_phone_code = 13;
+  string member_name = 14;
+  string member_avatar = 15;
+  int32 member_gender = 16;
+  string member_birthday = 17;
+}
+
+message GetWechatUserByUnionIdRequest {
+  string unionid = 1;
+}
+
+message GetWechatUserByUnionIdResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatUser data = 3;
+}
+
+message CreateOrUpdateWechatUserRequest {
+  WechatUser user = 1;
+}
+
+message CreateOrUpdateWechatUserResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatUser data = 3;
+}
+
+message ShowWechatUserRequest {
+  string id = 1;
+}
+
+message ShowWechatUserResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatUser data = 3;
+}
+
+message ShowWechatUserByMemberRequest {
+  string member_id = 1;
+}
+
+message ShowWechatUserByMemberResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  WechatUser data = 3;
+}
+
+message GetWechatUsersRequest {
+  repeated string ids = 1;
+}
+
+message WechatUserInfo {
+  string id = 1;
+  string nickname = 2;
+  string headimgurl = 3;
+  string member_id = 4;
+}
+
+message GetWechatUsersResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated WechatUserInfo data = 3;
+}

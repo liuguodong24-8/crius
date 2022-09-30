@@ -1,0 +1,40 @@
+[submodule "composer"]
+        path = composer
+        url = https://gitlab.omytech.com.cn/micro-service/composer.git
+        branch = 0.2.3
+[submodule "services/basic"]
+        path = services/basic
+        url = https://gitlab.omytech.com.cn/micro-service/basic.git
+        branch = 0.1.1
+[submodule "services/merchant-basic"]
+        path = services/merchant-basic
+        url = https://gitlab.omytech.com.cn/micro-service/merchant-basic.git
+        branch = 0.2.3
+[submodule "services/message"]
+        path = services/message
+        url = https://gitlab.omytech.com.cn/micro-service/message.git
+        branch = 0.1.1
+[submodule "services/member-private"]
+        path = services/member-private
+        url = https://gitlab.omytech.com.cn/micro-service/member-private.git
+        branch = 0.2.1
+[submodule "services/member-account"]
+        path = services/member-account
+        url = https://gitlab.omytech.com.cn/micro-service/member-account.git
+        branch = 0.2.1
+[submodule "services/appointment"]
+        path = services/appointment
+        url = https://gitlab.omytech.com.cn/micro-service/appointment.git
+        branch = 0.1.1
+[submodule "services/payment"]
+        path = services/payment
+        url = https://gitlab.omytech.com.cn/micro-service/payment.git
+        branch = 0.1.0
+[submodule "services/wechat"]
+        path = services/wechat
+        url = https://gitlab.omytech.com.cn/micro-service/wechat.git
+        branch = 0.1.0
+[submodule "services/point"]
+	path = services/point
+	url = https://gitlab.omytech.com.cn/micro-service/point.git
+        branch = 0.1.0

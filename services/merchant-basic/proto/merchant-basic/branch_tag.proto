@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message CreateBranchTagRequest{
+    string name = 1;
+    repeated string branch_ids = 2;
+}
+message CreateBranchTagResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetBranchTagsRequest{
+    string name = 1;
+    int32 date_start = 2;
+    int32 date_end = 3;
+    string status = 4;
+    int32 offset = 5;
+    int32 limit = 6;
+    repeated string branch_ids = 7;
+}
+
+message GetBranchTagsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetBranchTagsData data = 3;
+}
+
+message GetBranchTagsByIDsRequest{
+    repeated string ids = 1;
+}
+
+message GetBranchTagsByIDsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated BranchTagData data = 3;
+}
+
+message GetBranchTagsData {
+    repeated BranchTagData branch_tags = 1;
+    int32 total = 2;
+}
+
+message BranchTagData{
+    string id = 1;
+    string name = 2;
+    repeated string branches = 3;
+    string create_staff_id = 4;
+    string staff_name = 5;
+    string status = 6;
+    int32 created_at = 7;
+    int32 updated_at = 8;
+}
+
+message UpdateBranchTagRequest{
+    string id  = 1;
+    string name = 2;
+    repeated string branch_ids = 3;
+}
+
+message UpdateBranchTagResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateBranchTagStatusRequest{
+    string id  = 1;
+    string status = 2;
+}
+
+message UpdateBranchTagStatusResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message ShowBranchTagRequest{
+    string id = 1;
+}
+
+message ShowBranchTagResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    BranchTagData data = 3;
+}

@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+
+message RoleInfo{
+    string id = 1;
+    string name = 2;
+    string status = 3;
+    int32 property = 4;
+    string staff_id = 5;
+    string staff_name = 6;
+}
+
+message CreateRoleRequest{
+    string name = 1;
+    int32 property = 2;
+    repeated int32 permissions = 3;
+}
+
+message CreateRoleResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateRoleRequest{
+    string id = 1;
+    string name = 2;
+    int32 property = 3;
+    repeated int32 permissions = 4;
+}
+
+message UpdateRoleResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetRolesRequest{
+    string name = 1;
+    string status = 2;
+    int32 offset = 3;
+    int32 limit = 4;
+    string staff_id = 5;
+}
+
+message GetRolesResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    RolesData data = 3;
+}
+
+message RolesData {
+    repeated RoleInfo roles = 1;
+    int32 total = 2;
+}
+
+message DeleteRoleRequest{
+    string id = 1;
+}
+
+message DeleteRoleResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message UpdateRoleStatusRequest{
+    string id = 1;
+    string status = 2;
+}
+
+message UpdateRoleStatusResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetRoleHistoriesRequest{
+    string id = 1;
+}
+
+message GetRoleHistoriesResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    RoleHistoriesData data = 3;
+}
+
+message RolePermissionInfo{
+    RoleInfo role = 1;
+    repeated int32 permissions = 2;
+}
+
+message ShowRoleRequest{
+    string id = 1;
+}
+
+message ShowRoleResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    RolePermissionInfo data = 3;
+}
+
+message Snapshot{
+    string staff_id = 1;
+    string staff_name = 2;
+    string before = 3;
+    string after = 4;
+    int32 created_at = 5;
+    string method = 6;
+}
+
+message RoleHistoriesData{
+    RoleInfo role = 1;
+    repeated Snapshot snapshots = 2;
+}

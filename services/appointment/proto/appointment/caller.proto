@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message GetCallersRequest{
+    string phone_suffix = 1;
+    string phone = 2;
+    string name = 3;
+    int32 date_start = 4;
+    int32 date_end = 5;
+    repeated string roles = 6;
+    int32 offset = 7;
+    int32 limit = 8;
+    int32 is_black = 9;
+}
+
+message GetCallersResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    GetCallersData data = 3;
+}
+
+message GetCallersData{
+    repeated Caller callers = 1;
+    int32 total = 2;
+}
+
+message Caller{
+    string id = 1;
+    string merchant_id = 2;
+    string phone_code = 3;
+    string phone = 4;
+    string phone_tail = 5;
+    string phone_suffix = 6;
+    string name = 7;
+    int32 gender = 8;
+    bool is_black = 9;
+    string black_reason = 10;
+    int32 last_call_at = 11;
+    string last_operator = 12;
+    repeated string last_call_action = 13;
+    string role = 14;
+    repeated Tag tags = 15;
+}
+
+message ShowCallerByPhoneRequest{
+    string phone = 1;
+}
+
+message ShowCallerByPhoneResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    Caller data = 3;
+}
+
+message UpdateCallerRequest{
+    string id = 1;
+    string name = 2;
+    int32 gender = 3;
+    repeated Tag tags = 4;
+}
+
+message Tag{
+    string tag = 1;
+    string color = 2;
+}
+
+message UpdateCallerBlackRequest{
+    string id = 1;
+    bool is_black = 2;
+    string reason = 3;
+}

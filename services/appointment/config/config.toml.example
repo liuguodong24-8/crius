@@ -1,0 +1,48 @@
+## 服务信息
+[app]
+name = "appointment"
+desc = "预约服务"
+ip = "127.0.0.1"
+port = 34512
+weight = 1
+appointment_salt = "xxxx"
+
+### 服务中心信息
+[crius]
+address = "127.0.0.1:6666"  ## 服务中心地址
+merchantBasic = "merchant-basic"  ## 商户基础服务
+message = "message" ## 短信服务
+
+## 日志
+[log]
+channel = "service-appointment"   # 分类
+level = 1                    # 级别 1:debug 2:info 3:warn  4:error 5:panic
+output = ""                  # 日志输出 不配置(默认stdout) 配置文件路劲
+stack = false                # 是否打印堆栈信息
+
+## 数据库
+[database]
+host = "192.168.2.210"       #地址
+port = 5432                 #端口
+user = "micro"              #数据库账户
+password = "123456"         #数据库密码
+dbname = "micro"    #数据库名称
+sslmode = "disable"         #ssl
+log =  true                 #开启sql日志
+
+[migrate]
+table = "appointment_migrate"
+schema = "public"
+
+[redis]
+database = 1
+ip = "127.0.0.1"
+password = ""
+port = 6379
+
+[mqtt]
+client = "appointment" #客户端id
+username = "" #账号
+Password = "" #密码
+broker = "192.168.2.210:1883" #ip:port
+task_topic = "task" #任务队列topic

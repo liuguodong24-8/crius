@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message CreateRoomTypeRequest{
+    string branch_id = 1;
+    string category_id = 2;
+    string name = 3;
+    string status = 4;
+    int32 customer_min = 5;
+    int32 customer_max = 6;
+    int32 order = 7;
+    repeated string room_type_group_ids = 8;
+}
+
+message CreateRoomTypeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message GetRoomTypesRequest{
+    string name = 1;
+    string status = 2;
+    string branch_id = 3;
+    int32 offset = 4;
+    int32 limit = 5;
+    string category_id = 6;
+}
+
+message GetRoomTypesResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    RoomTypesData data = 3;
+}
+
+message RoomTypesData {
+    repeated RoomType room_types = 1;
+    int32 total = 2;
+}
+
+message GetRoomTypesByIDsRequest{
+    repeated string ids = 1;
+}
+
+message GetRoomTypesByIDsResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    repeated RoomType data = 3;
+}
+
+
+message RoomType {
+    string id = 1;
+    string branch_id = 2;
+    string category_id = 3;
+    string name = 4;
+    string status = 5;
+    string category_name = 6;
+    int32 customer_min = 7;
+    int32 customer_max = 8;
+    int32 order = 9;
+    repeated string room_type_group_ids = 10;
+}
+
+message UpdateRoomTypeRequest{
+    string id = 1;
+    string category_id = 2;
+    string name = 3;
+    string status = 4;
+    int32 customer_min = 5;
+    int32 customer_max = 6;
+    int32 order = 7;
+    repeated string room_type_group_ids = 8;
+}
+
+message UpdateRoomTypeStatusRequest{
+    string id = 1;
+    string status = 2;
+}
+
+message UpdateRoomTypeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+}
+
+message ShowRoomTypeRequest{
+    string id = 1;
+}
+
+message ShowRoomTypeResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    RoomType data = 3;
+}

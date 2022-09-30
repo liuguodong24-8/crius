@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message Empty {}
+
+message AppointmentConfig{
+  int32 keep_time = 1;
+  float remind_time = 2;
+  int32 order_limit = 3;
+  int32 room_num_warn = 4;
+  int32 payment_time = 5;
+  float cancel_time = 6;
+  float refund_percent_before = 7;
+  float refund_percent_after = 8;
+  int32 breach_months = 9;
+  int32 breach_total = 10;
+  string decoration_fee = 11;
+  int32 theme_keep_time = 12;
+  float theme_cancel_time = 13;
+  float theme_refund_percent_before = 14;
+  float theme_refund_percent_after = 15;
+}
+
+message GetAppointmentConfigResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  AppointmentConfig data = 3;
+}

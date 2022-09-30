@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package merchantBasic;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\MerchantBasicServer";
+
+message GrowthGain {
+  string consume_type = 1;
+  uint32 cost = 2;
+}
+
+message GrowthRule {
+  string id = 1;
+  string name = 2;
+  repeated GrowthGain growth_gain = 3;
+  int32 expire_day = 4;
+  repeated string branches = 5;
+  string status = 6;
+}
+
+message GrowthRulesData {
+  repeated GrowthRule rules = 1;
+  int32 total = 2;
+}
+
+message CreateGrowthRuleRequest {
+  GrowthRule rule = 1;
+}
+
+message GetGrowthRulesRequest {
+  string name = 1;
+  string status = 2;
+  int32 offset = 3;
+  int32 limit = 4;
+}
+
+message GetGrowthRulesResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  GrowthRulesData data = 3;
+}
+
+message ShowGrowthRuleRequest {
+  string id = 1;
+}
+
+message ShowGrowthRuleResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  GrowthRule data = 3;
+}
+
+message UpdateGrowthRuleRequest {
+  GrowthRule rule = 1;
+}
+
+message GetBranchesHasGrowthRuleResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  repeated string data = 3;
+}
+
+message GetBranchGrowthRuleRequest {
+  string branch_id = 1;
+}
+
+message GetBranchGrowthRuleResponse {
+  int32 error_code = 1;
+  string error_message = 2;
+  GrowthRule data = 3;
+}
+

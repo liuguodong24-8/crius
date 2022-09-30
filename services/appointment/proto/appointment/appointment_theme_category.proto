@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package appointment;
+
+//generate pb.go file
+//protoc --go_out=plugins=grpc:. ./proto/*.proto
+option go_package = "./proto;proto";
+option php_namespace = "Omy\\Crius\\AppointmentServer";
+
+message AppointmentThemeCategory{
+    string id = 1;
+    string name = 2; // 分类名字
+    int32 weight = 3; // 分类权值
+    string status = 4; // 分类状态 opened closed
+}
+
+message CreateAppointmentThemeCategoryRequest{
+    AppointmentThemeCategory category = 1;
+}
+
+message UpdateAppointmentThemeCategoryRequest{
+    AppointmentThemeCategory category = 1;
+}
+
+message UpdateAppointmentThemeCategoryStatusRequest{
+    string id = 1;
+    string status = 2; // 分类状态
+}
+
+message GetAppointmentThemeCategoriesRequest{
+    string name = 1; // 分类名字
+    string status = 2; // 分类状态
+    int32 offset = 3;
+    int32 limit = 4;
+}
+
+message GetAppointmentThemeCategoriesResponse{
+    message Data{
+        int32 total = 1;
+        repeated AppointmentThemeCategory categories = 2;
+    }
+    int32 error_code = 1;
+    string error_message = 2;
+    Data data = 3;
+}
+
+message ShowAppointmentThemeCategoryRequest{
+    string id = 1;
+}
+
+message ShowAppointmentThemeCategoryResponse{
+    int32 error_code = 1;
+    string error_message = 2;
+    AppointmentThemeCategory data = 3;
+}

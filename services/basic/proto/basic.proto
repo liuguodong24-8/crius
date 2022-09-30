@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package basic;
+
+option go_package = ".;proto";
+option php_namespace = "Omy\\Crius\\BasicServer";
+
+service BasicService {
+  rpc Hello (HelloRequest) returns (HelloResponse) {}
+}
+
+message HelloRequest {
+  string message = 1;
+}
+message HelloResponse {
+  string message = 1;
+}
